@@ -1,6 +1,7 @@
 {
   "name": "package.json",
   "private": true,
+  "homepage": "https://nik01x.github.io/websitehosttemp",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
