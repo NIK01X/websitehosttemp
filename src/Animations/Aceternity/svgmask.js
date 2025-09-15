@@ -5,7 +5,7 @@ exports.MaskContainer = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var react_2 = require("motion/react");
-var cn_1 = require("/Users/nikhil/Client-Websites/Digvijay_website/Website/utils/cn");
+var cn_1 = require("../../../utils/cn");
 var MaskContainer = function (_a) {
     var children = _a.children, revealText = _a.revealText, _b = _a.size, size = _b === void 0 ? 10 : _b, _c = _a.revealSize, revealSize = _c === void 0 ? 600 : _c, className = _a.className;
     var _d = (0, react_1.useState)(false), isHovered = _d[0], setIsHovered = _d[1];
