@@ -1,0 +1,615 @@
+/**
+ * MAIN STYLESHEET FOR WHITE EVENTIVE WEBSITE
+ * 
+ * This file contains:
+ * 1. Tailwind CSS imports and configuration
+ * 2. Custom font face declarations (Anvers & Aileron)
+ * 3. Premium animation keyframes for brand text
+ * 4. Performance optimization classes
+ * 5. Tailwind theme configuration
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "tailwindcss";
+
+/* Remove bounce effects globally */
+* {
+  overscroll-behavior: none !important;
+}
+
+html, body {
+  overscroll-behavior: none !important;
+  overscroll-behavior-y: none !important;
+  overscroll-behavior-x: none !important;
+}
+
+@theme inline {
+  --animate-first: moveVertical 30s ease infinite;
+  --animate-second: moveInCircle 20s reverse infinite;
+  --animate-third: moveInCircle 40s linear infinite;
+  --animate-fourth: moveHorizontal 40s ease infinite;
+  --animate-fifth: moveInCircle 20s ease infinite;
+
+  @keyframes moveHorizontal {
+    0% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+      transform: translateX(50%) translateY(10%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+  }
+
+  @keyframes moveInCircle {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes moveVertical {
+    0% {
+      transform: translateY(-50%);
+    }
+    50% {
+      transform: translateY(50%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+}
+
+
+
+
+
+
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+  }
+}
+
+/* 
+  SMOOTH SCROLLING CONFIGURATION
+  Enables smooth scrolling for anchor navigation between sections
+  
+  HORIZONTAL SCROLL PREVENTION
+  Disables horizontal scrolling to prevent StaggeredMenu from creating
+  unwanted horizontal expansion that ruins the user experience
+  
+  MOBILE BROWSER UI STABILIZATION
+  Prevents mobile browser address bar from causing viewport adjustments
+*/
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Disable horizontal scrolling completely */
+  height: 100%;       /* Stable height reference */
+}
+
+body {
+  overflow-x: hidden; /* Ensure no horizontal scrolling on body */
+  max-width: 100vw;   /* Prevent content from exceeding viewport width */
+  min-height: 100%;   /* Use stable height */
+}
+
+/* 
+  MOBILE VIEWPORT HEIGHT FIX
+  Prevents address bar show/hide from causing layout jumps
+*/
+@supports (height: 100dvh) {
+  /* Use dynamic viewport height on supported browsers */
+  #home {
+    height: 100dvh !important;
+  }
+}
+
+@supports not (height: 100dvh) {
+  /* Fallback: Use initial viewport height and lock it */
+  #home {
+    height: 100vh !important;
+  }
+}
+
+/* Mobile-specific fixes */
+@media screen and (max-width: 768px) {
+  /* Prevent viewport adjustments on mobile */
+  html {
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
+  }
+  
+  /* Lock home section height to prevent address bar adjustments */
+  #home {
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden;
+  }
+}
+
+/* 
+  GLOBAL CONTAINER CONSTRAINTS
+  Ensures all content stays within viewport bounds
+*/
+* {
+  box-sizing: border-box; /* Include padding/borders in element width calculations */
+}
+
+/* Prevent any element from exceeding viewport width */
+*:not(html):not(body) {
+  max-width: 100vw;
+}
+
+/* 
+  LETTER REVEAL ANIMATION
+  Premium letter-by-letter reveal with 3D rotation and font-weight transition
+  
+  Applied to: Individual letters in "WHITE" and "EVENTIVE" text
+  Duration: 0.8s per letter
+  Easing: ease-out for smooth deceleration
+  
+  Animation phases:
+  1. 0%: Invisible, ultra-compressed, rotated -90° (side view), ultra-thin font
+  2. 50%: Semi-visible, partially expanded, rotated -20°, light font weight
+  3. 100%: Fully visible, normal scale, no rotation, final font weight
+  
+  Creates sophisticated "turning and thickening" effect for each letter
+*/
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.1) rotateY(-90deg);
+    font-weight: 100;
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleX(0.7) rotateY(-20deg);
+    font-weight: 200;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) rotateY(0deg);
+    font-weight: 300;
+  }
+}
+
+/* 
+  ZOOM IN ANIMATION
+  Main container scaling effect for dramatic entrance
+  
+  Applied to: .text-container (entire "WHITE EVENTIVE" text block)
+  Duration: 1.8s 
+  Timing: Starts immediately (0s delay)
+  Easing: ease-out for professional deceleration
+  
+  Effect: Text dramatically scales from 30% to 100% size while fading in
+  Creates cinematic "zoom into focus" effect for brand reveal
+*/
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 
+  MOVE UP ANIMATION
+  Vertical separation effect for "WHITE" text
+  
+  Applied to: .white-text
+  Duration: 0.8s
+  Timing: 2.5s delay (after initial text reveal completes)
+  Easing: ease-out for smooth deceleration
+  
+  Effect: Moves "WHITE" text 30px upward to create space for expanding rectangle
+  Synchronized with moveDown and expandRectangle animations
+*/
+@keyframes moveUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-30px);
+  }
+}
+
+/* 
+  MOVE DOWN ANIMATION
+  Vertical separation effect for "EVENTIVE" text
+  
+  Applied to: .eventive-text
+  Duration: 0.8s
+  Timing: 2.5s delay (synchronized with moveUp)
+  Easing: ease-out for smooth deceleration
+  
+  Effect: Moves "EVENTIVE" text 30px downward to create space for expanding rectangle
+  Combined with moveUp, creates 60px total separation for rectangle space
+*/
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(30px);
+  }
+}
+
+/* 
+  EXPAND RECTANGLE ANIMATION
+  Creates elegant divider between "WHITE" and "EVENTIVE" text
+  
+  Applied to: .expanding-rectangle
+  Duration: 1.2s
+  Timing: 2.5s delay (synchronized with text separation)
+  Easing: ease-out for smooth expansion
+  
+  Multi-phase expansion for natural growth effect:
+  1. 0%: Completely collapsed (0px width/height), invisible
+  2. 30%: Small horizontal line appears (responsive width, 4px height)
+  3. 70%: Full width achieved, medium thickness (12px height)
+  4. 100%: Final state - full responsive dimensions (up to 35px height)
+  
+  Uses clamp() for responsive sizing:
+  - Width: 200px minimum, 30vw preferred, 400px maximum
+  - Height: 3.5rem minimum, 3vw preferred, 35px maximum
+  
+  Creates space-filling effect as text moves apart, appearing to "push" words away
+*/
+@keyframes expandRectangle {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+  30% {
+    width: clamp(100px, 15vw, 200px);
+    height: 4px;
+    opacity: 0.8;
+  }
+  70% {
+    width: clamp(200px, 30vw, 400px);
+    height: 12px;
+    opacity: 1;
+  }
+  100% {
+    width: clamp(200px, 30vw, 400px);
+    height: clamp(3.5rem, 3vw, 35px);
+    opacity: 1;
+  }
+}
+
+/* 
+  PERFORMANCE OPTIMIZATION CLASSES
+  CSS classes that optimize animations for smooth rendering
+  
+  will-change property tells the browser which properties will be animated,
+  allowing it to optimize rendering by moving elements to GPU layers
+*/
+
+/* 
+  Letter Animation Optimization
+  For individual letter reveal animations with 3D transforms
+*/
+.letter-animate {
+  will-change: transform, opacity, font-weight;
+  transform-origin: center;
+  transform-style: preserve-3d;
+}
+
+/* 
+  Text Container Optimization 
+  For main zoom-in animation container
+*/
+.text-container {
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+
+/* 
+  White Text Optimization
+  For vertical movement animation of "WHITE" text
+*/
+.white-text {
+  will-change: transform;
+  transform-origin: center;
+}
+
+/* 
+  Eventive Text Optimization
+  For vertical movement animation of "EVENTIVE" text
+*/
+.eventive-text {
+  will-change: transform;
+  transform-origin: center;
+}
+
+/* 
+  Expanding Rectangle Optimization
+  For multi-dimensional expansion animation
+*/
+.expanding-rectangle {
+  will-change: width, height, opacity;
+  transform-origin: center;
+}
+/* 
+  CUSTOM FONT DECLARATIONS
+  Local font files loaded from src/fonts/ directory
+*/
+
+/* 
+  Anvers Font Family
+  Used for: Main brand text "WHITE EVENTIVE"
+  Style: Premium, professional typography
+  Source: /src/fonts/Anvers/Anvers-Regular.ttf
+*/
+@font-face {
+  font-family: 'Anvers';
+  src: url('./fonts/Anvers/Anvers-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 
+  Aileron Font Family
+  Used for: Secondary text elements and UI components
+  Style: Clean, modern sans-serif
+  Source: /src/fonts/Aileron/Aileron-Regular.otf
+*/
+@font-face {
+  font-family: 'Aileron';
+  src: url('./fonts/Aileron/Aileron-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 
+  TAILWIND CSS THEME CONFIGURATION
+  Custom design tokens and color variables for consistent styling
+  
+  This section defines:
+  - Border radius variables for consistent rounded corners
+  - Color palette using OKLCH color space for better perception
+  - Light and dark theme variations
+  - Component-specific styling tokens
+  
+  Note: This is generated by Tailwind CSS and provides the foundation
+  for all UI components and styling throughout the website
+*/
+@theme inline {
+
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --radius-md: calc(var(--radius) - 2px);
+
+  --radius-lg: var(--radius);
+
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+
+  --color-input: var(--input);
+
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+
+  --color-chart-2: var(--chart-2);
+
+  --color-chart-3: var(--chart-3);
+
+  --color-chart-4: var(--chart-4);
+
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+
+  --color-sidebar-foreground: var(--sidebar-foreground);
+
+  --color-sidebar-primary: var(--sidebar-primary);
+
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+
+  --color-sidebar-accent: var(--sidebar-accent);
+
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+
+  --color-sidebar-border: var(--sidebar-border);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+
+  --foreground: oklch(0.145 0 0);
+
+  --card: oklch(1 0 0);
+
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.205 0 0);
+
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.97 0 0);
+
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(0.97 0 0);
+
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: oklch(0.97 0 0);
+
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.922 0 0);
+
+  --input: oklch(0.922 0 0);
+
+  --ring: oklch(0.708 0 0);
+
+  --chart-1: oklch(0.646 0.222 41.116);
+
+  --chart-2: oklch(0.6 0.118 184.704);
+
+  --chart-3: oklch(0.398 0.07 227.392);
+
+  --chart-4: oklch(0.828 0.189 84.429);
+
+  --chart-5: oklch(0.769 0.188 70.08);
+
+  --sidebar: oklch(0.985 0 0);
+
+  --sidebar-foreground: oklch(0.145 0 0);
+
+  --sidebar-primary: oklch(0.205 0 0);
+
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+
+  --sidebar-accent: oklch(0.97 0 0);
+
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+
+  --sidebar-border: oklch(0.922 0 0);
+
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+
+  --background: oklch(0.145 0 0);
+
+  --foreground: oklch(0.985 0 0);
+
+  --card: oklch(0.205 0 0);
+
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.205 0 0);
+
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.922 0 0);
+
+  --primary-foreground: oklch(0.205 0 0);
+
+  --secondary: oklch(0.269 0 0);
+
+  --secondary-foreground: oklch(0.985 0 0);
+
+  --muted: oklch(0.269 0 0);
+
+  --muted-foreground: oklch(0.708 0 0);
+
+  --accent: oklch(0.269 0 0);
+
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+
+  --border: oklch(1 0 0 / 10%);
+
+  --input: oklch(1 0 0 / 15%);
+
+  --ring: oklch(0.556 0 0);
+
+  --chart-1: oklch(0.488 0.243 264.376);
+
+  --chart-2: oklch(0.696 0.17 162.48);
+
+  --chart-3: oklch(0.769 0.188 70.08);
+
+  --chart-4: oklch(0.627 0.265 303.9);
+
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --sidebar: oklch(0.205 0 0);
+
+  --sidebar-foreground: oklch(0.985 0 0);
+
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+
+  --sidebar-accent: oklch(0.269 0 0);
+
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+
+  --sidebar-border: oklch(1 0 0 / 10%);
+
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
