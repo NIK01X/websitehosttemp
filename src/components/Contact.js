@@ -1,0 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var jsx_runtime_1 = require("react/jsx-runtime");
+var Contact = function () {
+    return ((0, jsx_runtime_1.jsx)("section", { id: "contact", className: "py-20 lg:py-28 bg-secondary/30", children: (0, jsx_runtime_1.jsxs)("div", { className: "mx-auto max-w-5xl px-4", children: [(0, jsx_runtime_1.jsx)("h2", { className: "text-3xl md:text-4xl font-bold tracking-tight", children: "Contact" }), (0, jsx_runtime_1.jsxs)("form", { className: "mt-6 grid grid-cols-1 md:grid-cols-2 gap-4", onSubmit: function (e) { return e.preventDefault(); }, children: [(0, jsx_runtime_1.jsx)("input", { type: "text", name: "name", placeholder: "Your name", className: "w-full rounded-md border bg-transparent px-4 py-3", required: true }), (0, jsx_runtime_1.jsx)("input", { type: "email", name: "email", placeholder: "Email address", className: "w-full rounded-md border bg-transparent px-4 py-3", required: true }), (0, jsx_runtime_1.jsx)("textarea", { name: "message", placeholder: "Tell us about your project", className: "md:col-span-2 w-full rounded-md border bg-transparent px-4 py-3 min-h-40", required: true }), (0, jsx_runtime_1.jsx)("div", { className: "md:col-span-2", children: (0, jsx_runtime_1.jsx)("button", { type: "submit", className: "inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-primary-foreground", children: "Send Message" }) })] })] }) }));
+};
+exports.default = Contact;

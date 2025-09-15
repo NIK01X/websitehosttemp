@@ -351,7 +351,7 @@ function App() {
           openMenuButtonColor="#fff"
           changeMenuColorOnOpen={true}
           colors={["#EEE8D6", "#5227ff"]}
-          logoUrl="whitelogo.svg"
+          logoUrl="/whitelogo.svg"
           accentColor="#5227ff"
           onMenuOpen={() => console.log("Menu opened")}
           onMenuClose={() => console.log("Menu closed")}
@@ -931,4 +931,3 @@ export default App;
 //     </div>
 //   );
 // }
-// export default App;
