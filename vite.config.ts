@@ -22,7 +22,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/websitehosttemp/",
+  base: "./",
   plugins: [react(), tailwindcss()],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
