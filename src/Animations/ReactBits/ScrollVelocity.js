@@ -25,24 +25,36 @@ function useElementWidth(ref) {
             }
         }
         updateWidth();
-        window.addEventListener('resize', updateWidth);
-        return function () { return window.removeEventListener('resize', updateWidth); };
+        window.addEventListener("resize", updateWidth);
+        return function () { return window.removeEventListener("resize", updateWidth); };
     }, [ref]);
     return width;
 }
 var ScrollVelocity = function (_a) {
-    var scrollContainerRef = _a.scrollContainerRef, _b = _a.texts, texts = _b === void 0 ? [] : _b, _c = _a.velocity, velocity = _c === void 0 ? 100 : _c, _d = _a.className, className = _d === void 0 ? '' : _d, _e = _a.damping, damping = _e === void 0 ? 50 : _e, _f = _a.stiffness, stiffness = _f === void 0 ? 400 : _f, _g = _a.numCopies, numCopies = _g === void 0 ? 6 : _g, _h = _a.velocityMapping, velocityMapping = _h === void 0 ? { input: [0, 1000], output: [0, 5] } : _h, _j = _a.parallaxClassName, parallaxClassName = _j === void 0 ? 'parallax' : _j, _k = _a.scrollerClassName, scrollerClassName = _k === void 0 ? 'scroller' : _k, parallaxStyle = _a.parallaxStyle, scrollerStyle = _a.scrollerStyle;
+    var scrollContainerRef = _a.scrollContainerRef, _b = _a.texts, texts = _b === void 0 ? [] : _b, _c = _a.velocity, velocity = _c === void 0 ? 100 : _c, // Base velocity
+    _d = _a.className, // Base velocity
+    className = _d === void 0 ? "" : _d, _e = _a.damping, damping = _e === void 0 ? 50 : _e, // Moderate damping for responsiveness
+    _f = _a.stiffness, // Moderate damping for responsiveness
+    stiffness = _f === void 0 ? 400 : _f, // Higher stiffness for quicker response
+    _g = _a.numCopies, // Higher stiffness for quicker response
+    numCopies = _g === void 0 ? 6 : _g, _h = _a.velocityMapping, velocityMapping = _h === void 0 ? { input: [0, 1000], output: [0, 5] } : _h, // Adequate output range
+    _j = _a.parallaxClassName, // Adequate output range
+    parallaxClassName = _j === void 0 ? "parallax" : _j, _k = _a.scrollerClassName, scrollerClassName = _k === void 0 ? "scroller" : _k, parallaxStyle = _a.parallaxStyle, scrollerStyle = _a.scrollerStyle;
     function VelocityText(_a) {
-        var children = _a.children, _b = _a.baseVelocity, baseVelocity = _b === void 0 ? velocity : _b, scrollContainerRef = _a.scrollContainerRef, _c = _a.className, className = _c === void 0 ? '' : _c, damping = _a.damping, stiffness = _a.stiffness, numCopies = _a.numCopies, velocityMapping = _a.velocityMapping, parallaxClassName = _a.parallaxClassName, scrollerClassName = _a.scrollerClassName, parallaxStyle = _a.parallaxStyle, scrollerStyle = _a.scrollerStyle;
+        var children = _a.children, _b = _a.baseVelocity, baseVelocity = _b === void 0 ? velocity : _b, scrollContainerRef = _a.scrollContainerRef, _c = _a.className, className = _c === void 0 ? "" : _c, damping = _a.damping, stiffness = _a.stiffness, numCopies = _a.numCopies, velocityMapping = _a.velocityMapping, parallaxClassName = _a.parallaxClassName, scrollerClassName = _a.scrollerClassName, parallaxStyle = _a.parallaxStyle, scrollerStyle = _a.scrollerStyle;
         var baseX = (0, react_2.useMotionValue)(0);
-        var scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
+        var scrollOptions = scrollContainerRef
+            ? { container: scrollContainerRef }
+            : {};
         var scrollY = (0, react_2.useScroll)(scrollOptions).scrollY;
         var scrollVelocity = (0, react_2.useVelocity)(scrollY);
         var smoothVelocity = (0, react_2.useSpring)(scrollVelocity, {
-            damping: damping !== null && damping !== void 0 ? damping : 50,
-            stiffness: stiffness !== null && stiffness !== void 0 ? stiffness : 400
+            damping: damping !== null && damping !== void 0 ? damping : 50, // Moderate damping for responsiveness
+            stiffness: stiffness !== null && stiffness !== void 0 ? stiffness : 400, // Higher stiffness for quicker response
         });
-        var velocityFactor = (0, react_2.useTransform)(smoothVelocity, (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.input) || [0, 1000], (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.output) || [0, 5], { clamp: false });
+        var velocityFactor = (0, react_2.useTransform)(smoothVelocity, (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.input) || [0, 1000], (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.output) || [0, 5], // Adequate output range
+        { clamp: false } // Disable clamping to allow full velocity range
+        );
         var copyRef = (0, react_1.useRef)(null);
         var copyWidth = useElementWidth(copyRef);
         function wrap(min, max, v) {
@@ -52,18 +64,24 @@ var ScrollVelocity = function (_a) {
         }
         var x = (0, react_2.useTransform)(baseX, function (v) {
             if (copyWidth === 0)
-                return '0px';
+                return "0px";
             return "".concat(wrap(-copyWidth, 0, v), "px");
         });
         var directionFactor = (0, react_1.useRef)(1);
         (0, react_2.useAnimationFrame)(function (t, delta) {
-            var moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+            // Normalize delta to prevent large jumps
+            var normalizedDelta = Math.min(delta, 16.67); // Cap at ~60fps
+            // Base movement - this ensures continuous scrolling
+            var moveBy = directionFactor.current * baseVelocity * (normalizedDelta / 1000);
+            var currentVelocity = velocityFactor.get();
+            // Change direction based on scroll velocity
             if (velocityFactor.get() < 0) {
                 directionFactor.current = -1;
             }
             else if (velocityFactor.get() > 0) {
                 directionFactor.current = 1;
             }
+            // Add scroll velocity effect
             moveBy += directionFactor.current * moveBy * velocityFactor.get();
             baseX.set(baseX.get() + moveBy);
         });

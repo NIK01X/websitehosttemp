@@ -109,6 +109,26 @@ const Masonry: React.FC<MasonryProps> = ({
     1
   );
 
+  // Mobile detection for responsive item filtering
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width:768px)");
+    const handleMediaChange = (e: MediaQueryListEvent) =>
+      setIsMobile(e.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => mediaQuery.removeEventListener("change", handleMediaChange);
+  }, []);
+
+  // Force 2 columns on mobile, use responsive columns otherwise
+  const finalColumns = isMobile ? 2 : columns;
+
+  // Filter items for mobile: show only 10 items (5 per column)
+  const filteredItems = isMobile ? items.slice(0, 10) : items;
+
   const [containerRef, { width }] = useMeasure<HTMLDivElement>();
   const [imagesReady, setImagesReady] = useState(false);
 
@@ -145,26 +165,28 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   useEffect(() => {
-    preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true));
-  }, [items]);
+    preloadImages(filteredItems.map((i) => i.img)).then(() =>
+      setImagesReady(true)
+    );
+  }, [filteredItems]);
 
   const grid = useMemo<GridItem[]>(() => {
     if (!width) return [];
 
-    const colHeights = new Array(columns).fill(0);
-    const columnWidth = width / columns;
+    const colHeights = new Array(finalColumns).fill(0);
+    const columnWidth = width / finalColumns;
 
-    return items.map((child) => {
+    return filteredItems.map((child) => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = columnWidth * col;
-      const height = child.height / 2;
+      const height = isMobile ? child.height / 2.5 : child.height / 2; // Slightly smaller on mobile
       const y = colHeights[col];
 
       colHeights[col] += height;
 
       return { ...child, x, y, w: columnWidth, h: height };
     });
-  }, [columns, items, width]);
+  }, [finalColumns, filteredItems, width, isMobile]);
 
   const hasMounted = useRef(false);
 

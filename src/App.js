@@ -13,11 +13,52 @@ var AnimatedContent_1 = __importDefault(require("./Animations/ReactBits/Animated
 var react_1 = require("react");
 var background_gradient_animation_1 = require("./Animations/Aceternity/background-gradient-animation");
 var text_hover_effect_1 = require("./Animations/Aceternity/text-hover-effect");
+var ScrollVelocity_1 = __importDefault(require("./Animations/ReactBits/ScrollVelocity"));
 var Masonry_1 = __importDefault(require("./Animations/ReactBits/Masonry"));
+var background_beams_1 = require("./Animations/Aceternity/background-beams");
+var Noise_1 = __importDefault(require("./Animations/ReactBits/Noise"));
 // height of hero
 var heroHeight = window.innerHeight;
 // calculate progress (0 to 1)
 var progress = Math.min(scrollY / heroHeight, 1);
+var SkeletonOne = function () {
+    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("p", { className: "font-bold md:text-4xl text-xl text-white", children: "House in the woods" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base text-white" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base my-4 max-w-lg text-neutral-200", children: "A serene and tranquil retreat, this house in the woods offers a peaceful escape from the hustle and bustle of city life." })] }));
+};
+var SkeletonTwo = function () {
+    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("p", { className: "font-bold md:text-4xl text-xl text-white", children: "House above the clouds" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base text-white" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base my-4 max-w-lg text-neutral-200", children: "Perched high above the world, this house offers breathtaking views and a unique living experience. It's a place where the sky meets home, and tranquility is a way of life." })] }));
+};
+var SkeletonThree = function () {
+    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("p", { className: "font-bold md:text-4xl text-xl text-white", children: "Greens all over" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base text-white" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base my-4 max-w-lg text-neutral-200", children: "A house surrounded by greenery and nature's beauty. It's the perfect place to relax, unwind, and enjoy life." })] }));
+};
+var SkeletonFour = function () {
+    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("p", { className: "font-bold md:text-4xl text-xl text-white", children: "Rivers are serene" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base text-white" }), (0, jsx_runtime_1.jsx)("p", { className: "font-normal text-base my-4 max-w-lg text-neutral-200", children: "A house by the river is a place of peace and tranquility. It's the perfect place to relax, unwind, and enjoy life." })] }));
+};
+var cards = [
+    {
+        id: 1,
+        content: (0, jsx_runtime_1.jsx)(SkeletonOne, {}),
+        className: "md:col-span-2",
+        thumbnail: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 2,
+        content: (0, jsx_runtime_1.jsx)(SkeletonTwo, {}),
+        className: "col-span-1",
+        thumbnail: "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 3,
+        content: (0, jsx_runtime_1.jsx)(SkeletonThree, {}),
+        className: "col-span-1",
+        thumbnail: "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 4,
+        content: (0, jsx_runtime_1.jsx)(SkeletonFour, {}),
+        className: "md:col-span-2",
+        thumbnail: "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+];
 var items2 = [
     {
         id: "1",
@@ -258,12 +299,21 @@ function App() {
                 // position: "relative",
                 // overflow: "hidden",
                 // backgroundColor: "#EEE8D6",
-                }, children: [(0, jsx_runtime_1.jsx)("div", { style: {
+                }, children: [(0, jsx_runtime_1.jsxs)("div", { style: {
                             position: "absolute",
                             inset: 0,
                             zIndex: 1,
                             opacity: 1 - eventiveProgress * 0.3, // Subtle fade as text animates
-                        }, children: (0, jsx_runtime_1.jsx)(background_gradient_animation_1.BackgroundGradientAnimation, { children: (0, jsx_runtime_1.jsx)("div", { className: "absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl", children: (0, jsx_runtime_1.jsx)("p", { className: "bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20" }) }) }) }), (0, jsx_runtime_1.jsx)(StaggeredMenu_1.default, { position: "right", items: menuItems, socialItems: socialItems, displaySocials: true, displayItemNumbering: true, menuButtonColor: "#EEE8D6", openMenuButtonColor: "#fff", changeMenuColorOnOpen: true, colors: ["#EEE8D6", "#5227ff"], logoUrl: "/whitelogo.svg", accentColor: "#5227ff", onMenuOpen: function () { return console.log("Menu opened"); }, onMenuClose: function () { return console.log("Menu closed"); } }), (0, jsx_runtime_1.jsx)("div", { className: "absolute inset-0 flex items-center justify-center", style: {
+                        }, children: [(0, jsx_runtime_1.jsx)(background_gradient_animation_1.BackgroundGradientAnimation, { children: (0, jsx_runtime_1.jsx)("div", { className: "absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl", children: (0, jsx_runtime_1.jsx)("p", { className: "bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20" }) }) }), (0, jsx_runtime_1.jsx)("div", { style: {
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    pointerEvents: "none",
+                                    zIndex: 2,
+                                    overflow: "hidden",
+                                }, children: (0, jsx_runtime_1.jsx)(Noise_1.default, { patternSize: 250, patternScaleX: 1, patternScaleY: 1, patternRefreshInterval: 2, patternAlpha: 15 }) })] }), (0, jsx_runtime_1.jsx)(StaggeredMenu_1.default, { position: "right", items: menuItems, socialItems: socialItems, displaySocials: true, displayItemNumbering: true, menuButtonColor: "#EEE8D6", openMenuButtonColor: "#fff", changeMenuColorOnOpen: true, colors: ["#EEE8D6", "#5227ff"], logoUrl: "/whitelogo.svg", accentColor: "#5227ff", onMenuOpen: function () { return console.log("Menu opened"); }, onMenuClose: function () { return console.log("Menu closed"); } }), (0, jsx_runtime_1.jsx)("div", { className: "absolute inset-0 flex items-center justify-center", style: {
                             zIndex: 10,
                             height: "100vh", // Fixed to viewport height to maintain initial centering
                             top: 0,
@@ -342,12 +392,13 @@ function App() {
                     "linear-gradient(to bottom, #000000, #000000,#000000, #000000, #000000, #000000)",
                     width: "100%",
                     position: "relative",
-                }, children: [(0, jsx_runtime_1.jsx)("div", { style: {
-                            width: "100%",
-                            height: "160px",
-                            backgroundColor: "black",
-                            border: "2px solid black",
-                        } }), (0, jsx_runtime_1.jsx)("div", { className: "h-[25rem] flex items-center justify-center px-4 text-center ", children: (0, jsx_runtime_1.jsx)(text_hover_effect_1.TextHoverEffect, { text: "EVENTS" }) }), (0, jsx_runtime_1.jsx)("div", { style: { margin: "20px" }, children: (0, jsx_runtime_1.jsx)(Masonry_1.default, { items: items2, ease: "power3.out", duration: 0.6, stagger: 0.05, animateFrom: "random", scaleOnHover: true, hoverScale: 0.95, blurToFocus: true, colorShiftOnHover: true }) }), (0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 200, direction: "vertical", reverse: false, duration: 3.5, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0.2, children: (0, jsx_runtime_1.jsxs)("div", { style: {
+                }, children: [(0, jsx_runtime_1.jsxs)("div", { className: "h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased", children: [(0, jsx_runtime_1.jsxs)("div", { className: "max-w-2xl mx-auto p-4", children: [(0, jsx_runtime_1.jsx)("div", { className: "h-[25rem] flex items-center justify-center px-4 text-center relative z-10", children: (0, jsx_runtime_1.jsx)(text_hover_effect_1.TextHoverEffect, { text: "EVENTS" }) }), (0, jsx_runtime_1.jsx)("div", { style: { margin: "20px" }, children: (0, jsx_runtime_1.jsx)(Masonry_1.default, { items: items2, ease: "power3.out", duration: 0.6, stagger: 0.05, animateFrom: "bottom", scaleOnHover: true, hoverScale: 0.95, blurToFocus: true, colorShiftOnHover: true }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "absolute inset-0 pointer-events-none", children: (0, jsx_runtime_1.jsx)(background_beams_1.BackgroundBeams, {}) })] }), (0, jsx_runtime_1.jsx)("div", { style: {
+                            // width: "100%",
+                            // height: "100%",
+                            position: "absolute",
+                            top: 1800,
+                            // background: "linear-gradient(to bottom, #EEE8D6,#EEE8D6)",
+                        }, children: (0, jsx_runtime_1.jsx)(ScrollVelocity_1.default, { texts: ["WHITE EVENTIVE ", "THE CREATIVE WAY TO PLAN"], velocity: 100, className: "custom-scroll-text" }) }), (0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 200, direction: "vertical", reverse: false, duration: 3.5, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0.2, children: (0, jsx_runtime_1.jsxs)("div", { style: {
                                 position: "absolute",
                                 top: 1500,
                                 // top: 600,

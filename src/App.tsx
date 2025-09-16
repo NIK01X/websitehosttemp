@@ -31,11 +31,104 @@ import { ParallaxScroll } from "./Animations/Aceternity/parallax-scroll";
 import { TextHoverEffect } from "./Animations/Aceternity/text-hover-effect";
 import ScrollVelocity from "./Animations/ReactBits/ScrollVelocity";
 import Masonry from "./Animations/ReactBits/Masonry";
+import { BackgroundBeams } from "./Animations/Aceternity/background-beams";
+import { LayoutGrid } from "./Animations/Aceternity/layout-grid";
+import Noise from "./Animations/ReactBits/Noise";
 // height of hero
 const heroHeight = window.innerHeight;
 
 // calculate progress (0 to 1)
 const progress = Math.min(scrollY / heroHeight, 1);
+
+const SkeletonOne = () => {
+  return (
+    <div>
+      <p className="font-bold md:text-4xl text-xl text-white">
+        House in the woods
+      </p>
+      <p className="font-normal text-base text-white"></p>
+      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+        A serene and tranquil retreat, this house in the woods offers a peaceful
+        escape from the hustle and bustle of city life.
+      </p>
+    </div>
+  );
+};
+
+const SkeletonTwo = () => {
+  return (
+    <div>
+      <p className="font-bold md:text-4xl text-xl text-white">
+        House above the clouds
+      </p>
+      <p className="font-normal text-base text-white"></p>
+      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+        Perched high above the world, this house offers breathtaking views and a
+        unique living experience. It&apos;s a place where the sky meets home,
+        and tranquility is a way of life.
+      </p>
+    </div>
+  );
+};
+const SkeletonThree = () => {
+  return (
+    <div>
+      <p className="font-bold md:text-4xl text-xl text-white">
+        Greens all over
+      </p>
+      <p className="font-normal text-base text-white"></p>
+      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+        A house surrounded by greenery and nature&apos;s beauty. It&apos;s the
+        perfect place to relax, unwind, and enjoy life.
+      </p>
+    </div>
+  );
+};
+const SkeletonFour = () => {
+  return (
+    <div>
+      <p className="font-bold md:text-4xl text-xl text-white">
+        Rivers are serene
+      </p>
+      <p className="font-normal text-base text-white"></p>
+      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
+        A house by the river is a place of peace and tranquility. It&apos;s the
+        perfect place to relax, unwind, and enjoy life.
+      </p>
+    </div>
+  );
+};
+
+const cards = [
+  {
+    id: 1,
+    content: <SkeletonOne />,
+    className: "md:col-span-2",
+    thumbnail:
+      "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 2,
+    content: <SkeletonTwo />,
+    className: "col-span-1",
+    thumbnail:
+      "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 3,
+    content: <SkeletonThree />,
+    className: "col-span-1",
+    thumbnail:
+      "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    id: 4,
+    content: <SkeletonFour />,
+    className: "md:col-span-2",
+    thumbnail:
+      "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
+];
 const items2 = [
   {
     id: "1",
@@ -338,6 +431,28 @@ function App() {
               </p>
             </div>
           </BackgroundGradientAnimation>
+
+          {/* Noise effect overlay on top of BackgroundGradientAnimation */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              pointerEvents: "none",
+              zIndex: 2,
+              overflow: "hidden",
+            }}
+          >
+            <Noise
+              patternSize={250}
+              patternScaleX={1}
+              patternScaleY={1}
+              patternRefreshInterval={2}
+              patternAlpha={15}
+            />
+          </div>
         </div>
 
         {/* StaggeredMenu on top with proper positioning */}
@@ -662,14 +777,17 @@ function App() {
         >
           <h1>EVENTS</h1>
         </div> */}
-        <div
+
+        {/* Spacing Rectangle */}
+        {/* <div
           style={{
             width: "100%",
             height: "160px",
             backgroundColor: "black",
             border: "2px solid black",
           }}
-        />
+        /> */}
+
         {/* <AnimatedContent
           distance={200}
           direction="vertical"
@@ -682,22 +800,31 @@ function App() {
           threshold={0.3}
           delay={0.2}
         > */}
-        <div className="h-[25rem] flex items-center justify-center px-4 text-center ">
-          <TextHoverEffect text="EVENTS" />
+        <div className="h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
+          <div className="max-w-2xl mx-auto p-4">
+            <div className="h-[25rem] flex items-center justify-center px-4 text-center relative z-10">
+              <TextHoverEffect text="EVENTS" />
+            </div>
+            <div style={{ margin: "20px" }}>
+              <Masonry
+                items={items2}
+                ease="power3.out"
+                duration={0.6}
+                stagger={0.05}
+                animateFrom="bottom"
+                scaleOnHover={true}
+                hoverScale={0.95}
+                blurToFocus={true}
+                colorShiftOnHover={true}
+              />
+            </div>
+          </div>
+
+          <div className="absolute inset-0 pointer-events-none">
+            <BackgroundBeams />
+          </div>
         </div>
-        <div style={{ margin: "20px" }}>
-          <Masonry
-            items={items2}
-            ease="power3.out"
-            duration={0.6}
-            stagger={0.05}
-            animateFrom="random"
-            scaleOnHover={true}
-            hoverScale={0.95}
-            blurToFocus={true}
-            colorShiftOnHover={true}
-          />
-        </div>
+
         {/* </AnimatedContent> */}
         {/* <div
           style={{ position: "absolute", inset: 0, zIndex: 1, top: "300px" }}
@@ -748,7 +875,21 @@ function App() {
         {/* <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" /> */}
         {/* </div> */}
         {/* </div> */}
-
+        <div
+          style={{
+            // width: "100%",
+            // height: "100%",
+            position: "absolute",
+            top: 1800,
+            // background: "linear-gradient(to bottom, #EEE8D6,#EEE8D6)",
+          }}
+        >
+          <ScrollVelocity
+            texts={["WHITE EVENTIVE", "THE CREATIVE WAY TO PLAN"]}
+            velocity={100}
+            className="custom-scroll-text"
+          />
+        </div>
         <AnimatedContent
           distance={200}
           direction="vertical"
@@ -913,21 +1054,3 @@ function App() {
 }
 
 export default App;
-
-// import Stacking3D from "./Animations/Stacking3d";
-// import About from "./components/About";
-// import Projects from "./components/Projects";
-// import Service from "./components/Service";
-// import Contact from "./components/Contact";
-// function App() {
-//   return (
-//     <div>
-//       <Stacking3D />
-//       {/* then the rest of your normal sections */}
-//       <About />
-//       <Projects />
-//       <Service />
-//       <Contact />
-//     </div>
-//   );
-// }

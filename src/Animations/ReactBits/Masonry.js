@@ -105,8 +105,23 @@ var Masonry = function (_a) {
         "(min-width:600px)",
         "(min-width:400px)",
     ], [5, 4, 3, 2], 1);
-    var _k = useMeasure(), containerRef = _k[0], width = _k[1].width;
-    var _l = (0, react_1.useState)(false), imagesReady = _l[0], setImagesReady = _l[1];
+    // Mobile detection for responsive item filtering
+    var _k = (0, react_1.useState)(false), isMobile = _k[0], setIsMobile = _k[1];
+    (0, react_1.useEffect)(function () {
+        var mediaQuery = window.matchMedia("(max-width:768px)");
+        var handleMediaChange = function (e) {
+            return setIsMobile(e.matches);
+        };
+        setIsMobile(mediaQuery.matches);
+        mediaQuery.addEventListener("change", handleMediaChange);
+        return function () { return mediaQuery.removeEventListener("change", handleMediaChange); };
+    }, []);
+    // Force 2 columns on mobile, use responsive columns otherwise
+    var finalColumns = isMobile ? 2 : columns;
+    // Filter items for mobile: show only 10 items (5 per column)
+    var filteredItems = isMobile ? items.slice(0, 10) : items;
+    var _l = useMeasure(), containerRef = _l[0], width = _l[1].width;
+    var _m = (0, react_1.useState)(false), imagesReady = _m[0], setImagesReady = _m[1];
     var getInitialPosition = function (item) {
         var _a;
         var containerRect = (_a = containerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect();
@@ -136,22 +151,24 @@ var Masonry = function (_a) {
         }
     };
     (0, react_1.useEffect)(function () {
-        preloadImages(items.map(function (i) { return i.img; })).then(function () { return setImagesReady(true); });
-    }, [items]);
+        preloadImages(filteredItems.map(function (i) { return i.img; })).then(function () {
+            return setImagesReady(true);
+        });
+    }, [filteredItems]);
     var grid = (0, react_1.useMemo)(function () {
         if (!width)
             return [];
-        var colHeights = new Array(columns).fill(0);
-        var columnWidth = width / columns;
-        return items.map(function (child) {
+        var colHeights = new Array(finalColumns).fill(0);
+        var columnWidth = width / finalColumns;
+        return filteredItems.map(function (child) {
             var col = colHeights.indexOf(Math.min.apply(Math, colHeights));
             var x = columnWidth * col;
-            var height = child.height / 2;
+            var height = isMobile ? child.height / 2.5 : child.height / 2; // Slightly smaller on mobile
             var y = colHeights[col];
             colHeights[col] += height;
             return __assign(__assign({}, child), { x: x, y: y, w: columnWidth, h: height });
         });
-    }, [columns, items, width]);
+    }, [finalColumns, filteredItems, width, isMobile]);
     var hasMounted = (0, react_1.useRef)(false);
     (0, react_1.useLayoutEffect)(function () {
         if (!imagesReady)

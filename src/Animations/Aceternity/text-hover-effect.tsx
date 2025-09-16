@@ -42,12 +42,13 @@ export const TextHoverEffect = ({
       <defs>
         <linearGradient
           id="textGradient"
-          gradientUnits="userSpaceOnUse"
-          cx="50%"
-          cy="50%"
-          r="25%"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+          gradientUnits="objectBoundingBox"
         >
-          {hovered && (
+          {hovered ? (
             <>
               <stop offset="0%" stopColor="#eab308" />
               <stop offset="25%" stopColor="#ef4444" />
@@ -55,26 +56,24 @@ export const TextHoverEffect = ({
               <stop offset="75%" stopColor="#06b6d4" />
               <stop offset="100%" stopColor="#8b5cf6" />
             </>
+          ) : (
+            <>
+              <stop offset="0%" stopColor="transparent" />
+              <stop offset="100%" stopColor="transparent" />
+            </>
           )}
         </linearGradient>
 
         <motion.radialGradient
           id="revealMask"
           gradientUnits="userSpaceOnUse"
-          r="20%"
+          r={hovered ? "30%" : "0%"}
           initial={{ cx: "50%", cy: "50%" }}
           animate={maskPosition}
-          transition={{ duration: duration ?? 0, ease: "easeOut" }}
-
-          // example for a smoother animation below
-
-          //   transition={{
-          //     type: "spring",
-          //     stiffness: 300,
-          //     damping: 50,
-          //   }}
+          transition={{ duration: duration ?? 0.3, ease: "easeOut" }}
         >
           <stop offset="0%" stopColor="white" />
+          <stop offset="70%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
         </motion.radialGradient>
         <mask id="textMask">
