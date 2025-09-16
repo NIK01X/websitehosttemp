@@ -398,7 +398,7 @@ function App() {
                             position: "absolute",
                             top: 1800,
                             // background: "linear-gradient(to bottom, #EEE8D6,#EEE8D6)",
-                        }, children: (0, jsx_runtime_1.jsx)(ScrollVelocity_1.default, { texts: ["WHITE EVENTIVE ", "THE CREATIVE WAY TO PLAN"], velocity: 100, className: "custom-scroll-text" }) }), (0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 200, direction: "vertical", reverse: false, duration: 3.5, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0.2, children: (0, jsx_runtime_1.jsxs)("div", { style: {
+                        }, children: (0, jsx_runtime_1.jsx)(ScrollVelocity_1.default, { texts: ["WHITE EVENTIVE", "THE CREATIVE WAY TO PLAN"], velocity: 100, className: "custom-scroll-text" }) }), (0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 200, direction: "vertical", reverse: false, duration: 3.5, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0.2, children: (0, jsx_runtime_1.jsxs)("div", { style: {
                                 position: "absolute",
                                 top: 1500,
                                 // top: 600,

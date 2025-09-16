@@ -31,14 +31,14 @@ function useElementWidth(ref) {
     return width;
 }
 var ScrollVelocity = function (_a) {
-    var scrollContainerRef = _a.scrollContainerRef, _b = _a.texts, texts = _b === void 0 ? [] : _b, _c = _a.velocity, velocity = _c === void 0 ? 100 : _c, // Base velocity
-    _d = _a.className, // Base velocity
-    className = _d === void 0 ? "" : _d, _e = _a.damping, damping = _e === void 0 ? 50 : _e, // Moderate damping for responsiveness
-    _f = _a.stiffness, // Moderate damping for responsiveness
-    stiffness = _f === void 0 ? 400 : _f, // Higher stiffness for quicker response
-    _g = _a.numCopies, // Higher stiffness for quicker response
-    numCopies = _g === void 0 ? 6 : _g, _h = _a.velocityMapping, velocityMapping = _h === void 0 ? { input: [0, 1000], output: [0, 5] } : _h, // Adequate output range
-    _j = _a.parallaxClassName, // Adequate output range
+    var scrollContainerRef = _a.scrollContainerRef, _b = _a.texts, texts = _b === void 0 ? [] : _b, _c = _a.velocity, velocity = _c === void 0 ? 80 : _c, // Slower default velocity for smoother motion
+    _d = _a.className, // Slower default velocity for smoother motion
+    className = _d === void 0 ? "" : _d, _e = _a.damping, damping = _e === void 0 ? 80 : _e, // Higher damping for stability
+    _f = _a.stiffness, // Higher damping for stability
+    stiffness = _f === void 0 ? 200 : _f, // Lower stiffness for smoother response
+    _g = _a.numCopies, // Lower stiffness for smoother response
+    numCopies = _g === void 0 ? 6 : _g, _h = _a.velocityMapping, velocityMapping = _h === void 0 ? { input: [0, 1000], output: [0, 2] } : _h, // Reduced output range
+    _j = _a.parallaxClassName, // Reduced output range
     parallaxClassName = _j === void 0 ? "parallax" : _j, _k = _a.scrollerClassName, scrollerClassName = _k === void 0 ? "scroller" : _k, parallaxStyle = _a.parallaxStyle, scrollerStyle = _a.scrollerStyle;
     function VelocityText(_a) {
         var children = _a.children, _b = _a.baseVelocity, baseVelocity = _b === void 0 ? velocity : _b, scrollContainerRef = _a.scrollContainerRef, _c = _a.className, className = _c === void 0 ? "" : _c, damping = _a.damping, stiffness = _a.stiffness, numCopies = _a.numCopies, velocityMapping = _a.velocityMapping, parallaxClassName = _a.parallaxClassName, scrollerClassName = _a.scrollerClassName, parallaxStyle = _a.parallaxStyle, scrollerStyle = _a.scrollerStyle;
@@ -49,11 +49,11 @@ var ScrollVelocity = function (_a) {
         var scrollY = (0, react_2.useScroll)(scrollOptions).scrollY;
         var scrollVelocity = (0, react_2.useVelocity)(scrollY);
         var smoothVelocity = (0, react_2.useSpring)(scrollVelocity, {
-            damping: damping !== null && damping !== void 0 ? damping : 50, // Moderate damping for responsiveness
-            stiffness: stiffness !== null && stiffness !== void 0 ? stiffness : 400, // Higher stiffness for quicker response
+            damping: damping !== null && damping !== void 0 ? damping : 80, // Increased damping for smoother motion
+            stiffness: stiffness !== null && stiffness !== void 0 ? stiffness : 200, // Reduced stiffness for less jerky movement
         });
-        var velocityFactor = (0, react_2.useTransform)(smoothVelocity, (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.input) || [0, 1000], (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.output) || [0, 5], // Adequate output range
-        { clamp: false } // Disable clamping to allow full velocity range
+        var velocityFactor = (0, react_2.useTransform)(smoothVelocity, (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.input) || [0, 1000], (velocityMapping === null || velocityMapping === void 0 ? void 0 : velocityMapping.output) || [0, 2], // Reduced output range for subtler effect
+        { clamp: true } // Enable clamping to prevent extreme values
         );
         var copyRef = (0, react_1.useRef)(null);
         var copyWidth = useElementWidth(copyRef);
@@ -71,18 +71,20 @@ var ScrollVelocity = function (_a) {
         (0, react_2.useAnimationFrame)(function (t, delta) {
             // Normalize delta to prevent large jumps
             var normalizedDelta = Math.min(delta, 16.67); // Cap at ~60fps
-            // Base movement - this ensures continuous scrolling
             var moveBy = directionFactor.current * baseVelocity * (normalizedDelta / 1000);
             var currentVelocity = velocityFactor.get();
-            // Change direction based on scroll velocity
-            if (velocityFactor.get() < 0) {
-                directionFactor.current = -1;
+            // Smooth direction changes with threshold
+            if (Math.abs(currentVelocity) > 0.1) {
+                if (currentVelocity < 0) {
+                    directionFactor.current = -1;
+                }
+                else if (currentVelocity > 0) {
+                    directionFactor.current = 1;
+                }
             }
-            else if (velocityFactor.get() > 0) {
-                directionFactor.current = 1;
-            }
-            // Add scroll velocity effect
-            moveBy += directionFactor.current * moveBy * velocityFactor.get();
+            // Apply velocity effect more smoothly
+            var velocityEffect = Math.abs(currentVelocity) > 0.1 ? currentVelocity * 0.3 : 0;
+            moveBy += directionFactor.current * moveBy * velocityEffect;
             baseX.set(baseX.get() + moveBy);
         });
         var spans = [];
