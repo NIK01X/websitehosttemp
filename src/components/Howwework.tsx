@@ -1,9 +1,91 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Timeline } from "../Animations/Aceternity/timeline";
 import { AuroraBackground } from "../Animations/Aceternity/aurora-background";
 import { motion } from "motion/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 export function Howwework() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Optimized GSAP bottom-to-top fade animation
+    if (timelineRef.current) {
+      // Set initial state
+      gsap.set(timelineRef.current, {
+        opacity: 0,
+        y: 100, // Start 100px below
+        willChange: "transform, opacity",
+      });
+
+      // Create scroll trigger for the timeline section
+      ScrollTrigger.create({
+        trigger: timelineRef.current,
+        start: "top 85%",
+        end: "bottom 15%",
+        toggleActions: "play reverse play reverse", // Always trigger on enter/leave
+        onEnter: () => {
+          // Reset to initial position first, then animate
+          gsap.set(timelineRef.current, {
+            opacity: 0,
+            y: 100,
+            willChange: "transform, opacity",
+          });
+          gsap.to(timelineRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.set(timelineRef.current, { willChange: "auto" }); // Performance optimization
+            },
+          });
+        },
+        onLeave: () => {
+          gsap.to(timelineRef.current, {
+            opacity: 0,
+            y: 50, // Slight downward movement on leave
+            duration: 0.8,
+            ease: "power2.in",
+          });
+        },
+        onEnterBack: () => {
+          // Reset to initial position first, then animate
+          gsap.set(timelineRef.current, {
+            opacity: 0,
+            y: 100,
+            willChange: "transform, opacity",
+          });
+          gsap.to(timelineRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.set(timelineRef.current, { willChange: "auto" }); // Performance optimization
+            },
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(timelineRef.current, {
+            opacity: 0,
+            y: 100,
+            duration: 0.8,
+            ease: "power2.in",
+          });
+        },
+      });
+    }
+
+    // Cleanup function for optimization
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   const data = [
     {
       title: "Briefing",
@@ -316,7 +398,13 @@ export function Howwework() {
     // },
   ];
   return (
-    <section id="service">
+    <section
+      id="service"
+      style={{
+        background: "black",
+        minHeight: "100vh",
+      }}
+    >
       {/* <AuroraBackground>
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
@@ -340,12 +428,12 @@ export function Howwework() {
         </motion.div>
       </AuroraBackground> */}
       <div
-      // className="relative w-full overflow-hidden"
-      // style={{
-      //   background: "black",
-      //   maxWidth: "100vw",
-      //   overflowX: "hidden",
-      // }}
+        ref={timelineRef}
+        className="relative w-full"
+        style={{
+          background: "black",
+          minHeight: "100vh",
+        }}
       >
         <Timeline data={data} />
       </div>

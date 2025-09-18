@@ -7,15 +7,10 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var StaggeredMenu_1 = __importDefault(require("./Animations/ReactBits/StaggeredMenu"));
 var About_1 = __importDefault(require("./components/About"));
 var Projects_1 = __importDefault(require("./components/Projects"));
-var Service_1 = __importDefault(require("./components/Service"));
+var Howwework_1 = require("./components/Howwework");
 var Contact_1 = __importDefault(require("./components/Contact"));
-var AnimatedContent_1 = __importDefault(require("./Animations/ReactBits/AnimatedContent"));
 var react_1 = require("react");
 var background_gradient_animation_1 = require("./Animations/Aceternity/background-gradient-animation");
-var text_hover_effect_1 = require("./Animations/Aceternity/text-hover-effect");
-var ScrollVelocity_1 = __importDefault(require("./Animations/ReactBits/ScrollVelocity"));
-var Masonry_1 = __importDefault(require("./Animations/ReactBits/Masonry"));
-var background_beams_1 = require("./Animations/Aceternity/background-beams");
 var Noise_1 = __importDefault(require("./Animations/ReactBits/Noise"));
 // height of hero
 var heroHeight = window.innerHeight;
@@ -239,8 +234,9 @@ var images = [
 var menuItems = [
     { label: "Home", ariaLabel: "Go to home section", link: "#home" },
     { label: "About", ariaLabel: "Learn about us", link: "#about" },
-    { label: "Projects", ariaLabel: "Our projects", link: "#projects" },
+    // { label: "How we work", ariaLabel: "Learn about us", link: "#about" },
     { label: "Services", ariaLabel: "View our services", link: "#service" },
+    { label: "Projects", ariaLabel: "Our projects", link: "#projects" },
     { label: "Contact", ariaLabel: "Get in touch", link: "#contact" },
 ];
 // Social media links for the StaggeredMenu component
@@ -406,45 +402,6 @@ function App() {
                                                                 ? "0 0 20px rgba(82, 39, 255, 0.5), 0 0 40px rgba(82, 39, 255, 0.3)"
                                                                 : "none",
                                                             transition: "text-shadow 0.8s ease-out",
-                                                        } })] })] })] }) }) })] }), (0, jsx_runtime_1.jsxs)("section", { style: {
-                    height: "800vh",
-                    background: 
-                    // "linear-gradient(to bottom, #15284B, #000000,#000000, #000000, #000000, #000000)",
-                    "linear-gradient(to bottom, #000000, #000000,#000000, #000000, #000000, #000000)",
-                    width: "100%",
-                    position: "relative",
-                }, children: [(0, jsx_runtime_1.jsxs)("div", { className: "h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased", children: [(0, jsx_runtime_1.jsxs)("div", { className: "max-w-2xl mx-auto p-4", children: [(0, jsx_runtime_1.jsx)("div", { className: "h-[25rem] flex items-center justify-center px-4 text-center relative z-10", children: (0, jsx_runtime_1.jsx)(text_hover_effect_1.TextHoverEffect, { text: "EVENTS" }) }), (0, jsx_runtime_1.jsx)("div", { style: { margin: "20px" }, children: (0, jsx_runtime_1.jsx)(Masonry_1.default, { items: items2, ease: "power3.out", duration: 0.6, stagger: 0.05, animateFrom: "bottom", scaleOnHover: true, hoverScale: 0.95, blurToFocus: true, colorShiftOnHover: true }) })] }), (0, jsx_runtime_1.jsx)("div", { className: "absolute inset-0 pointer-events-none", children: (0, jsx_runtime_1.jsx)(background_beams_1.BackgroundBeams, {}) })] }), (0, jsx_runtime_1.jsx)("div", { style: {
-                            // width: "100%",
-                            // height: "100%",
-                            position: "absolute",
-                            top: 1800,
-                            // background: "linear-gradient(to bottom, #EEE8D6,#EEE8D6)",
-                        }, children: (0, jsx_runtime_1.jsx)(ScrollVelocity_1.default, { texts: ["WHITE EVENTIVE", "THE CREATIVE WAY TO PLAN"], velocity: 100, className: "custom-scroll-text" }) }), (0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 200, direction: "vertical", reverse: false, duration: 3.5, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0.2, children: (0, jsx_runtime_1.jsxs)("div", { style: {
-                                position: "absolute",
-                                top: 1500,
-                                // top: 600,
-                                left: 0,
-                                width: "100%",
-                                height: "100vh",
-                                zIndex: 10,
-                            }, children: [(0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 50, direction: "horizontal", reverse: true, duration: 1.2, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0, children: (0, jsx_runtime_1.jsx)("p", { style: {
-                                            color: "#EEE8D6",
-                                            fontFamily: "Aileron, sans-serif",
-                                            fontSize: "clamp(1rem, 3vw, 2rem)",
-                                            fontWeight: "600",
-                                            lineHeight: "1.5",
-                                            letterSpacing: "0.15em",
-                                            margin: "clamp(2rem, 8vw, 8rem) clamp(1rem, 15vw, 15rem) 0 clamp(1rem, 8vw, 8rem)",
-                                            pointerEvents: "none",
-                                        }, children: "Professionally executed experiences for top-tier clients like Reliance Jio BP, Birla White, Jio World Garden, Sleepwell, and HDFC Life." }) }), (0, jsx_runtime_1.jsx)(AnimatedContent_1.default, { distance: 50, direction: "horizontal", reverse: true, duration: 1.2, ease: "power2.out", initialOpacity: 0, animateOpacity: true, scale: 0.95, threshold: 0.3, delay: 0, children: (0, jsx_runtime_1.jsx)("p", { style: {
-                                            color: "#EEE8D6",
-                                            fontFamily: "Aileron, sans-serif",
-                                            fontSize: "clamp(1rem, 3vw, 2rem)",
-                                            fontWeight: "600",
-                                            lineHeight: "1.5",
-                                            letterSpacing: "0.15em",
-                                            margin: "clamp(1rem, 3vw, 3rem) clamp(1rem, 15vw, 15rem) 0 clamp(1rem, 8vw, 8rem)",
-                                            pointerEvents: "none",
-                                        }, children: "With a sharp focus on in-house design and production, the company ensures flawless execution with fast turnaround times, cost-effective solutions, and data-driven campaigns that maximize brand visibility." }) })] }) })] }), (0, jsx_runtime_1.jsx)(About_1.default, {}), (0, jsx_runtime_1.jsx)(Projects_1.default, {}), (0, jsx_runtime_1.jsx)(Service_1.default, {}), (0, jsx_runtime_1.jsx)(Contact_1.default, {})] }));
+                                                        } })] })] })] }) }) })] }), (0, jsx_runtime_1.jsx)(About_1.default, {}), (0, jsx_runtime_1.jsx)(Howwework_1.Howwework, {}), (0, jsx_runtime_1.jsx)(Projects_1.default, {}), (0, jsx_runtime_1.jsx)(Contact_1.default, {})] }));
 }
 exports.default = App;
