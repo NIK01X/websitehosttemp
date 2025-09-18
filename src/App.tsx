@@ -12,7 +12,8 @@ import { MaskContainer } from "./Animations/Aceternity/svgmask";
 import StaggeredMenu from "./Animations/ReactBits/StaggeredMenu";
 import About from "./components/About";
 import Projects from "./components/Projects";
-import Service from "./components/Service";
+import { Service } from "./components/Service";
+import { Howwework } from "./components/Howwework";
 import Contact from "./components/Contact";
 import GridMotion from "./Animations/ReactBits/GridMotion";
 import DomeGallery from "./Animations/ReactBits/DomeGallery";
@@ -34,6 +35,7 @@ import Masonry from "./Animations/ReactBits/Masonry";
 import { BackgroundBeams } from "./Animations/Aceternity/background-beams";
 import { LayoutGrid } from "./Animations/Aceternity/layout-grid";
 import Noise from "./Animations/ReactBits/Noise";
+
 // height of hero
 const heroHeight = window.innerHeight;
 
@@ -309,8 +311,10 @@ const images = [
 const menuItems = [
   { label: "Home", ariaLabel: "Go to home section", link: "#home" },
   { label: "About", ariaLabel: "Learn about us", link: "#about" },
-  { label: "Projects", ariaLabel: "Our projects", link: "#projects" },
+  // { label: "How we work", ariaLabel: "Learn about us", link: "#about" },
   { label: "Services", ariaLabel: "View our services", link: "#service" },
+  { label: "Projects", ariaLabel: "Our projects", link: "#projects" },
+
   { label: "Contact", ariaLabel: "Get in touch", link: "#contact" },
 ];
 
@@ -769,271 +773,6 @@ function App() {
         - Smooth gradient transition from top to bottom
       */}
 
-      <section
-        style={{
-          height: "800vh",
-          background:
-            // "linear-gradient(to bottom, #15284B, #000000,#000000, #000000, #000000, #000000)",
-            "linear-gradient(to bottom, #000000, #000000,#000000, #000000, #000000, #000000)",
-
-          width: "100%",
-          position: "relative",
-        }}
-      >
-        {/* <div
-          className="eventive-text"
-          style={{
-            fontFamily: "Anvers, sans-serif",
-            color: "#EEE8D6",
-            fontSize: "clamp(2.5rem, 5vw, 5rem)",
-            fontWeight: "50",
-            lineHeight: "1",
-            margin: "0",
-            letterSpacing: "0.05em",
-            // transform: `translateY(${eventiveTranslateY}px) scale(${eventiveScale})`,
-            opacity: eventiveOpacity,
-            transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
-            // animation: "moveDown 0.8s ease-out 2.5s forwards",
-          }}
-        >
-          <h1>EVENTS</h1>
-        </div> */}
-
-        {/* Spacing Rectangle */}
-        {/* <div
-          style={{
-            width: "100%",
-            height: "160px",
-            backgroundColor: "black",
-            border: "2px solid black",
-          }}
-        /> */}
-
-        {/* <AnimatedContent
-          distance={200}
-          direction="vertical"
-          reverse={false}
-          duration={1}
-          ease="power2.out"
-          initialOpacity={0}
-          animateOpacity={true}
-          scale={0.95}
-          threshold={0.3}
-          delay={0.2}
-        > */}
-        <div className="h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
-          <div className="max-w-2xl mx-auto p-4">
-            <div className="h-[25rem] flex items-center justify-center px-4 text-center relative z-10">
-              <TextHoverEffect text="EVENTS" />
-            </div>
-            <div style={{ margin: "20px" }}>
-              <Masonry
-                items={items2}
-                ease="power3.out"
-                duration={0.6}
-                stagger={0.05}
-                animateFrom="bottom"
-                scaleOnHover={true}
-                hoverScale={0.95}
-                blurToFocus={true}
-                colorShiftOnHover={true}
-              />
-            </div>
-          </div>
-
-          <div className="absolute inset-0 pointer-events-none">
-            <BackgroundBeams />
-          </div>
-        </div>
-
-        {/* </AnimatedContent> */}
-        {/* <div
-          style={{ position: "absolute", inset: 0, zIndex: 1, top: "300px" }}
-        >
-          <GridMotion items={items} />
-        </div> */}
-
-        {/* <section className="relative w-full h-screen">
-          <div className="pt-20 md:pt-32 lg:pt-40">
-            <ParallaxScroll
-              images={images}
-              // className="h-[60rem] sm:h-[70rem] md:h-[80rem] lg:h-[90rem]"
-              className="w-full h-full"
-            />
-          </div>
-        </section> */}
-        {/* <div className="pt-20 md:pt-32 lg:pt-40">
-          <section className="relative w-full h-[60rem] sm:h-[70rem] md:h-[80rem] lg:h-[90rem]">
-            <ParallaxScroll images={images} className="w-full h-full" />
-          </section>
-        </div> */}
-        {/* Fixed SparklesCore background - won't interfere with scroll */}
-        {/* <div className="fixed inset-0 w-full h-full pointer-events-none z-0">
-          <SparklesCore
-            background="transparent"
-            minSize={0.3}
-            maxSize={0.8}
-            particleDensity={300}
-            className="w-full h-full"
-            particleColor="#FFFFFF"
-          />
-        </div> */}
-        {/* <div className="w-full flex flex-col items-center justify-center py-20 relative z-10">
-          <h1
-            style={{ color: "#EEE8D6", top: "15rem" }}
-            className="md:text-7xl text-3xl lg:text-1xl font-bold text-center text-white relative z-20 mb-8"
-          >
-            The Creative Way To Plan
-          </h1> */}
-        {/* <div */}
-        {/* className="w-[40rem] h-40 relative mx-auto" */}
-        {/* style={{ top: "15rem" }} */}
-        {/* > */}
-        {/* Gradients */}
-        {/* <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" /> */}
-        {/* <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" /> */}
-        {/* <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" /> */}
-        {/* <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" /> */}
-        {/* </div> */}
-        {/* </div> */}
-        <div
-          style={{
-            // width: "100%",
-            // height: "100%",
-            position: "absolute",
-            top: 1800,
-            // background: "linear-gradient(to bottom, #EEE8D6,#EEE8D6)",
-          }}
-        >
-          <ScrollVelocity
-            texts={["WHITE EVENTIVE", "THE CREATIVE WAY TO PLAN"]}
-            velocity={100}
-            className="custom-scroll-text"
-          />
-        </div>
-        <AnimatedContent
-          distance={200}
-          direction="vertical"
-          reverse={false}
-          duration={3.5}
-          ease="power2.out"
-          initialOpacity={0}
-          animateOpacity={true}
-          scale={0.95}
-          threshold={0.3}
-          delay={0.2}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: 1500,
-              // top: 600,
-
-              left: 0,
-              width: "100%",
-              height: "100vh",
-              zIndex: 10,
-            }}
-          >
-            {/* Top overlapping rectangle */}
-
-            {/* <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-
-                width: "100vw",
-                height: "45vh",
-                background:
-                  "linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.8) 40%, transparent 100%)",
-                zIndex: 15,
-                pointerEvents: "none",
-                // boxShadow: "0 10px 30px rgba(0, 0, 0, 0.8)",
-              }}
-            /> */}
-
-            {/* <DomeGallery /> */}
-            <AnimatedContent
-              distance={50}
-              direction="horizontal"
-              reverse={true}
-              duration={1.2}
-              ease="power2.out"
-              initialOpacity={0}
-              animateOpacity={true}
-              scale={0.95}
-              threshold={0.3}
-              delay={0}
-            >
-              <p
-                style={{
-                  color: "#EEE8D6",
-                  fontFamily: "Aileron, sans-serif",
-                  fontSize: "clamp(1rem, 3vw, 2rem)",
-                  fontWeight: "600",
-                  lineHeight: "1.5",
-                  letterSpacing: "0.15em",
-                  margin:
-                    "clamp(2rem, 8vw, 8rem) clamp(1rem, 15vw, 15rem) 0 clamp(1rem, 8vw, 8rem)",
-                  pointerEvents: "none",
-                }}
-              >
-                Professionally executed experiences for top-tier clients like
-                Reliance Jio BP, Birla White, Jio World Garden, Sleepwell, and
-                HDFC Life.
-              </p>
-            </AnimatedContent>
-            <AnimatedContent
-              distance={50}
-              direction="horizontal"
-              reverse={true}
-              duration={1.2}
-              ease="power2.out"
-              initialOpacity={0}
-              animateOpacity={true}
-              scale={0.95}
-              threshold={0.3}
-              delay={0}
-            >
-              <p
-                style={{
-                  color: "#EEE8D6",
-                  fontFamily: "Aileron, sans-serif",
-                  fontSize: "clamp(1rem, 3vw, 2rem)",
-                  fontWeight: "600",
-                  lineHeight: "1.5",
-                  letterSpacing: "0.15em",
-                  margin:
-                    "clamp(1rem, 3vw, 3rem) clamp(1rem, 15vw, 15rem) 0 clamp(1rem, 8vw, 8rem)",
-                  pointerEvents: "none",
-                }}
-              >
-                With a sharp focus on in-house design and production, the
-                company ensures flawless execution with fast turnaround times,
-                cost-effective solutions, and data-driven campaigns that
-                maximize brand visibility.
-              </p>
-            </AnimatedContent>
-            {/* Bottom overlapping rectangle */}
-            {/* <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                width: "100vw",
-                height: "45vh",
-                background:
-                  "linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.8) 40%, transparent 100%)",
-                zIndex: 15,
-                pointerEvents: "none",
-                // boxShadow: "0 -10px 30px rgba(0, 0, 0, 0.8)",
-              }}
-            /> */}
-          </div>
-        </AnimatedContent>
-      </section>
-
       {/*
         ACETERNITY MASK CONTAINER DEMO SECTION
         Interactive reveal animation component
@@ -1067,8 +806,9 @@ function App() {
         - Contact: Contact form and information
       */}
       <About />
+      <Howwework />
+      {/* <Service /> */}
       <Projects />
-      <Service />
       <Contact />
     </div>
   );
