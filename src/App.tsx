@@ -35,6 +35,7 @@ import Masonry from "./Animations/ReactBits/Masonry";
 import { BackgroundBeams } from "./Animations/Aceternity/background-beams";
 import { LayoutGrid } from "./Animations/Aceternity/layout-grid";
 import Noise from "./Animations/ReactBits/Noise";
+import FounderNote from "./components/FounderNote";
 
 // height of hero
 const heroHeight = window.innerHeight;
@@ -536,7 +537,6 @@ function App() {
                 className="white-text"
                 style={{
                   fontFamily: "Anvers, sans-serif",
-                  color: "#EEE8D6",
                   fontSize: "clamp(4rem, 8vw, 8rem)",
                   fontWeight: "50",
                   lineHeight: "1",
@@ -556,15 +556,17 @@ function App() {
                 {"WHITE".split("").map((letter, index) => (
                   <span
                     key={index}
-                    className="letter-animate"
+                    className="letter-animate masked-letter"
                     style={{
                       display: "inline-block",
                       fontWeight: "100",
                       opacity: "0",
                       transform: "scaleX(0.1)",
-                      animation: `letterReveal 0.8s ease-out ${
+                      animation: `letterRevealWithMask 0.8s ease-out ${
                         0.1 * index
-                      }s forwards`,
+                      }s forwards, animate-background 5s infinite alternate linear ${
+                        0.8 + 0.1 * index
+                      }s`,
                     }}
                   >
                     {letter}
@@ -618,7 +620,6 @@ function App() {
                 className="eventive-text"
                 style={{
                   fontFamily: "Anvers, sans-serif",
-                  color: "#EEE8D6",
                   fontSize: "clamp(2.5rem, 5vw, 5rem)",
                   fontWeight: "50",
                   lineHeight: "1",
@@ -639,15 +640,17 @@ function App() {
                 {"EVENTIVE".split("").map((letter, index) => (
                   <span
                     key={index}
-                    className="letter-animate"
+                    className="letter-animate masked-letter"
                     style={{
                       display: "inline-block",
                       fontWeight: "100",
                       opacity: "0",
                       transform: "scaleX(0.1)",
-                      animation: `letterReveal 0.8s ease-out ${
+                      animation: `letterRevealWithMask 0.8s ease-out ${
                         0.6 + 0.1 * index
-                      }s forwards`,
+                      }s forwards, animate-background 5s infinite alternate linear ${
+                        1.4 + 0.1 * index
+                      }s`,
                     }}
                   >
                     {letter}
@@ -807,6 +810,8 @@ function App() {
       */}
       <About />
       <Howwework />
+      {/* <Service /> */}
+      <FounderNote />
       {/* <Service /> */}
       <Projects />
       <Contact />

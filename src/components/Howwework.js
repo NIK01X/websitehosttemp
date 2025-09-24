@@ -2,8 +2,86 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Howwework = Howwework;
 var jsx_runtime_1 = require("react/jsx-runtime");
+var react_1 = require("react");
 var timeline_1 = require("../Animations/Aceternity/timeline");
+var gsap_1 = require("gsap");
+var ScrollTrigger_1 = require("gsap/ScrollTrigger");
+// Register the ScrollTrigger plugin
+gsap_1.gsap.registerPlugin(ScrollTrigger_1.ScrollTrigger);
 function Howwework() {
+    var timelineRef = (0, react_1.useRef)(null);
+    (0, react_1.useEffect)(function () {
+        // Optimized GSAP bottom-to-top fade animation
+        if (timelineRef.current) {
+            // Set initial state
+            gsap_1.gsap.set(timelineRef.current, {
+                opacity: 0,
+                y: 100, // Start 100px below
+                willChange: "transform, opacity",
+            });
+            // Create scroll trigger for the timeline section
+            ScrollTrigger_1.ScrollTrigger.create({
+                trigger: timelineRef.current,
+                start: "top 85%",
+                end: "bottom 15%",
+                toggleActions: "play reverse play reverse", // Always trigger on enter/leave
+                onEnter: function () {
+                    // Reset to initial position first, then animate
+                    gsap_1.gsap.set(timelineRef.current, {
+                        opacity: 0,
+                        y: 100,
+                        willChange: "transform, opacity",
+                    });
+                    gsap_1.gsap.to(timelineRef.current, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.5,
+                        ease: "power2.out",
+                        onComplete: function () {
+                            gsap_1.gsap.set(timelineRef.current, { willChange: "auto" }); // Performance optimization
+                        },
+                    });
+                },
+                onLeave: function () {
+                    gsap_1.gsap.to(timelineRef.current, {
+                        opacity: 0,
+                        y: 50, // Slight downward movement on leave
+                        duration: 0.8,
+                        ease: "power2.in",
+                    });
+                },
+                onEnterBack: function () {
+                    // Reset to initial position first, then animate
+                    gsap_1.gsap.set(timelineRef.current, {
+                        opacity: 0,
+                        y: 100,
+                        willChange: "transform, opacity",
+                    });
+                    gsap_1.gsap.to(timelineRef.current, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1.2,
+                        ease: "power2.out",
+                        onComplete: function () {
+                            gsap_1.gsap.set(timelineRef.current, { willChange: "auto" }); // Performance optimization
+                        },
+                    });
+                },
+                onLeaveBack: function () {
+                    gsap_1.gsap.to(timelineRef.current, {
+                        opacity: 0,
+                        y: 100,
+                        duration: 0.8,
+                        ease: "power2.in",
+                    });
+                },
+            });
+        }
+        // Cleanup function for optimization
+        return function () {
+            ScrollTrigger_1.ScrollTrigger.getAll().forEach(function (trigger) { return trigger.kill(); });
+        };
+    }, []);
     var data = [
         {
             title: "Briefing",
@@ -185,5 +263,11 @@ function Howwework() {
         //   ),
         // },
     ];
-    return ((0, jsx_runtime_1.jsx)("section", { id: "service", children: (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(timeline_1.Timeline, { data: data }) }) }));
+    return ((0, jsx_runtime_1.jsx)("section", { id: "service", style: {
+            background: "black",
+            minHeight: "100vh",
+        }, children: (0, jsx_runtime_1.jsx)("div", { ref: timelineRef, className: "relative w-full", style: {
+                background: "black",
+                minHeight: "100vh",
+            }, children: (0, jsx_runtime_1.jsx)(timeline_1.Timeline, { data: data }) }) }));
 }

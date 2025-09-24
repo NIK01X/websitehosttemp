@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { BackgroundBeams } from "../Animations/Aceternity/background-beams";
 import ScrollVelocity from "../Animations/ReactBits/ScrollVelocity";
 import AnimatedContent from "../Animations/ReactBits/AnimatedContent";
@@ -7,14 +7,109 @@ import GradientText from "../Animations/ReactBits/GradientText";
 import { Timeline } from "../Animations/Aceternity/timeline";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GlowingStars from "./GlowingStars";
 
 gsap.registerPlugin(ScrollTrigger);
 const About: React.FC = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const logoRef = useRef<HTMLImageElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     // Optimized GSAP animation with batch processing
     const animations = gsap.timeline();
+
+    // Logo reveal animation (matching WHITE EVENTIVE letterReveal style)
+    if (logoRef.current) {
+      // Set initial state for logo reveal - matching letterReveal keyframes
+      gsap.set(logoRef.current, {
+        opacity: 0,
+        scaleX: 0.1,
+        rotateY: -90,
+        willChange: "transform, opacity",
+      });
+
+      // Create scroll trigger for logo reveal
+      ScrollTrigger.create({
+        trigger: logoRef.current,
+        start: "top 90%",
+        end: "bottom 10%",
+        toggleActions: "play reverse play reverse",
+        onEnter: () => {
+          // Reveal animation mimicking letterReveal keyframes
+          gsap
+            .timeline()
+            .to(logoRef.current, {
+              opacity: 0.7,
+              scaleX: 0.7,
+              rotateY: -100,
+              duration: 0.2,
+              ease: "power2.out",
+            })
+            .to(logoRef.current, {
+              opacity: 1,
+              scaleX: 1,
+              rotateY: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              onComplete: () => {
+                gsap.set(logoRef.current, { willChange: "auto" });
+              },
+            });
+        },
+        onLeave: () => {
+          gsap.to(logoRef.current, {
+            opacity: 0.6,
+            scaleX: 0.9,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        },
+        onEnterBack: () => {
+          // Quick reveal when scrolling back
+          gsap
+            .timeline()
+            .to(logoRef.current, {
+              opacity: 0.7,
+              scaleX: 0.7,
+              rotateY: -100,
+              duration: 0.2,
+              ease: "power2.out",
+            })
+            .to(logoRef.current, {
+              opacity: 1,
+              scaleX: 1,
+              rotateY: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              onComplete: () => {
+                gsap.set(logoRef.current, { willChange: "auto" });
+              },
+            });
+        },
+        onLeaveBack: () => {
+          gsap.to(logoRef.current, {
+            opacity: 0,
+            scaleX: 0.1,
+            rotateY: -90,
+            duration: 0.8,
+            ease: "power2.in",
+          });
+        },
+      });
+    }
 
     sectionRefs.current.forEach((section, index) => {
       if (section) {
@@ -119,20 +214,40 @@ const About: React.FC = () => {
               ref={(el) => {
                 sectionRefs.current[0] = el;
               }}
-              className="mt-30 text-left space-y-8"
+              className="md:ml-10 mt-30 text-left space-y-8"
             >
-              <GradientText
-                colors={["#4E53C2", "#D9D9D9", "#4E53C2", "#D9D9D9", "#4E53C2"]}
-                animationSpeed={8}
-                showBorder={false}
-                className=""
-                style={{ justifyContent: "flex-start", margin: "0" }}
+              {/* Logo and Title in Same Row */}
+              <div className="flex items-center gap-6 md:gap-8">
+                <GradientText
+                  colors={[
+                    "#4E53C2",
+                    "#D9D9D9",
+                    "#4E53C2",
+                    "#D9D9D9",
+                    "#4E53C2",
+                  ]}
+                  animationSpeed={8}
+                  showBorder={false}
+                  className=""
+                  style={{ justifyContent: "flex-start", margin: "0" }}
+                >
+                  {/* <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-[#4E53C2] via-[#D9D9D9] to-[#D9D9D9]  bg-clip-text text-transparent"> */}
+                  <h1 className="text-5xl md:text-8xl font-bold">Who We Are</h1>
+                </GradientText>
+
+                {/* White Logo with Reveal Animation */}
+                {/* <img
+                  ref={logoRef}
+                  src="/whitelogo.svg"
+                  alt="White Eventive Logo"
+                  className="w-16 h-16 md:w-24 md:h-24 object-contain flex-shrink-0"
+                /> */}
+              </div>
+              <p
+                className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed mr-5 md:mr-25"
+                style={{ fontFamily: "Aileron, sans-serif" }}
               >
-                {/* <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-[#4E53C2] via-[#D9D9D9] to-[#D9D9D9]  bg-clip-text text-transparent"> */}
-                <h1 className="text-5xl md:text-8xl font-bold">Who We Are</h1>
-              </GradientText>
-              <p className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed mr-5 md:mr-25">
-                Founded in 2018, White Eventive has emerged as one of India’s
+                Founded in 2018, White Eventive has emerged as one of India's
                 leading experiential event agencies, celebrated for creating
                 high-impact brand experiences.
               </p>
@@ -143,7 +258,7 @@ const About: React.FC = () => {
               ref={(el) => {
                 sectionRefs.current[1] = el;
               }}
-              className="mt-20 md:mt-60 text-right space-y-8"
+              className="md:mr-10 mt-20 md:mt-60 text-right space-y-8"
             >
               <GradientText
                 colors={["#C24E50", "#D9D9D9", "#C24E50", "#D9D9D9", "#C24E50"]}
@@ -161,7 +276,10 @@ const About: React.FC = () => {
                   What Makes Us Unique
                 </h2>
               </GradientText>
-              <p className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed  ml-5 md:ml-25">
+              <p
+                className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed  ml-5 md:ml-25"
+                style={{ fontFamily: "Aileron, sans-serif" }}
+              >
                 We are driven by precision, creativity, and cultural
                 sensitivity, with a strong focus on luxury innovation and
                 seamless execution. Our work is designed not just to impress but
@@ -174,7 +292,7 @@ const About: React.FC = () => {
               ref={(el) => {
                 sectionRefs.current[2] = el;
               }}
-              className="mt-20 md:mt-60 text-left space-y-8"
+              className="md:ml-10 mt-20 md:mt-60 text-left space-y-8"
             >
               <GradientText
                 colors={["#C2844E", "#D9D9D9", "#C2844E", "#D9D9D9", "#C2844E"]}
@@ -192,7 +310,10 @@ const About: React.FC = () => {
                   What We Deliver
                 </h2>{" "}
               </GradientText>
-              <p className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed mr-5 md:mr-25">
+              <p
+                className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed mr-5 md:mr-25"
+                style={{ fontFamily: "Aileron, sans-serif" }}
+              >
                 From grand-scale festivals to refined corporate summits and
                 retail activations, we deliver tailor-made experiences across
                 diverse spaces. Our solutions combine strategic insight, design
@@ -205,7 +326,7 @@ const About: React.FC = () => {
               ref={(el) => {
                 sectionRefs.current[3] = el;
               }}
-              className="mt-20 md:mt-60 text-right space-y-8"
+              className="md:mr-10 mt-20 md:mt-60 text-right space-y-8"
             >
               <GradientText
                 colors={["#59C24E", "#D9D9D9", "#59C24E", "#D9D9D9", "#59C24E"]}
@@ -221,7 +342,10 @@ const About: React.FC = () => {
               >
                 <h2 className="text-5xl md:text-8xl font-bold">How We Work</h2>
               </GradientText>
-              <p className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed ml-5 md:ml-25">
+              <p
+                className="mt-8 text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed ml-5 md:ml-25"
+                style={{ fontFamily: "Aileron, sans-serif" }}
+              >
                 We believe in emotion-led storytelling and disciplined
                 execution. Every detail — from concept development and vendor
                 management to on-ground delivery — is handled with passion,
@@ -231,7 +355,10 @@ const About: React.FC = () => {
           </div>
 
           <div className="absolute inset-0 pointer-events-none">
-            <BackgroundBeams />
+            {!isMobile && (
+              <BackgroundBeams className="md:scale-100 scale-150 sm:scale-125" />
+            )}
+            {isMobile && <GlowingStars />}
           </div>
         </div>
         {/* <section id="service">

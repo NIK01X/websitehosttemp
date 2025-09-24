@@ -3,9 +3,13 @@
 }
 
 .scroll-reveal-text {
-  font-size: clamp(1.6rem, 4vw, 3rem);
-  line-height: 1.5;
-  font-weight: 600;
+  /* font-size: clamp(1.6rem, 4vw, 3rem); */
+  /* line-height: 1.5; */
+  /* font-weight: 600; */
+  /* font-Family: "Aileron, sans-serif"; */
+  color: #C0C0C0;
+  line-Height: 1.7;
+
 }
 
 .word {

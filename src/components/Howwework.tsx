@@ -91,8 +91,12 @@ export function Howwework() {
       title: "Briefing",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Built and launched Aceternity UI and Aceternity UI Pro from scratch
+          <p className="mb-8 text-2xs font-normal text-[#F1F5F1] md:text-2xl dark:text-[#F1F5F1]">
+            At White Eventive, we understand that one size does not fit all. We
+            approach every project with a clean slate— starting by understanding
+            our client’s thoughts and ideas. Your unique business needs and
+            context form the foundation upon which we wear our creative heads to
+            reimagine your space and event.{" "}
           </p>
           <div className="grid grid-cols-2 gap-4">
             <img
@@ -131,14 +135,16 @@ export function Howwework() {
       title: "Curation",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            I usually run out of copy, but when I see content this big, I try to
-            integrate lorem ipsum.
+          <p className="mb-8 text-2xs font-normal text-[#F1F5F1] md:text-2xl dark:text-[#F1F5F1]">
+            We Curate Experiences That Resonate At White Eventive, we seamlessly
+            align your vision with our expertise—curating every Corner of the
+            event with precision, purpose, and flair. Every detail is crafted to
+            meet your goals , & leave a lasting impression on your audience
           </p>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
+          {/* <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Lorem ipsum is for people who are too lazy to write copy. But we are
             not. Here are some more example of beautiful designs I built.
-          </p>
+          </p> */}
           <div className="grid grid-cols-2 gap-4">
             <img
               src="https://assets.aceternity.com/pro/hero-sections.png"
@@ -176,10 +182,14 @@ export function Howwework() {
       title: "Execution",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Deployed 5 new components on Aceternity today
+          <p className="mb-8 text-2xs font-normal text-[#F1F5F1] md:text-2xl dark:text-[#F1F5F1]">
+            We Deliver Seamless Experiences At White Eventive, we manage every
+            step from décor design and schedule planning to production and
+            on-site coordination with a structured, strategic approach. Our
+            method ensures a smooth event flow, so you can relax knowing your
+            vision is in expert hands{" "}
           </p>
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
               ✅ Card grid component
             </div>
@@ -195,7 +205,7 @@ export function Howwework() {
             <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
               ✅ Test text
             </div>
-          </div>
+          </div> */}
           <div className="grid grid-cols-2 gap-4">
             <img
               src="https://assets.aceternity.com/pro/hero-sections.png"
@@ -400,6 +410,7 @@ export function Howwework() {
   return (
     <section
       id="service"
+      className="pt-0 md:pt-18"
       style={{
         background: "black",
         minHeight: "100vh",

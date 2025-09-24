@@ -333,6 +333,59 @@ body {
 }
 
 /* 
+  TEXT MASKING ANIMATION
+  Creates animated background image masking effect for brand text
+  
+  Applied to: .masked-text class on WHITE EVENTIVE text
+  Background: Dynamic landscape image with smooth horizontal panning
+  Duration: 5s infinite alternate for continuous motion
+  
+  The image moves from left (0%) to right (100%) and back
+  Uses background-clip: text to mask the image within text shapes
+  Creates premium animated text effect while preserving all existing animations
+*/
+.masked-letter {
+  color: transparent !important;
+  background-image: url('https://images.unsplash.com/photo-1638742385167-96fc60e12f59?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+  background-size: 200%; /* Enlarged for smooth animation */
+  background-position: 0 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Combined animation for letter reveal AND background movement */
+@keyframes letterRevealWithMask {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.1) rotateY(-90deg);
+    font-weight: 100;
+    background-position: 0 50%;
+  }
+  50% {
+    opacity: 0.7;
+    transform: scaleX(0.7) rotateY(-20deg);
+    font-weight: 200;
+    background-position: 25% 50%;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) rotateY(0deg);
+    font-weight: 300;
+    background-position: 50% 50%;
+  }
+}
+
+@keyframes animate-background {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 
   PERFORMANCE OPTIMIZATION CLASSES
   CSS classes that optimize animations for smooth rendering
   
