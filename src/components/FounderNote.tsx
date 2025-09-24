@@ -62,7 +62,8 @@ const FounderNote: React.FC = () => {
         {/* Founder Image - Centered */}
         <div className="mb-8">
           <img
-            src="/images/personimage.png"
+            src="/websitehosttemp/images/personimage.png"
+            // src="/images/personimage.png"
             alt="Founder - White Eventive"
             className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg shadow-2xl mx-auto"
             style={{
