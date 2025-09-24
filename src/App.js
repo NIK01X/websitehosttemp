@@ -12,6 +12,7 @@ var Contact_1 = __importDefault(require("./components/Contact"));
 var react_1 = require("react");
 var background_gradient_animation_1 = require("./Animations/Aceternity/background-gradient-animation");
 var Noise_1 = __importDefault(require("./Animations/ReactBits/Noise"));
+var FounderNote_1 = __importDefault(require("./components/FounderNote"));
 // height of hero
 var heroHeight = window.innerHeight;
 // calculate progress (0 to 1)
@@ -339,19 +340,18 @@ function App() {
                                     animation: "zoomIn 1.8s ease-out 0s forwards",
                                 }, children: [(0, jsx_runtime_1.jsx)("div", { className: "white-text", style: {
                                             fontFamily: "Anvers, sans-serif",
-                                            color: "#EEE8D6",
                                             fontSize: "clamp(4rem, 8vw, 8rem)",
                                             fontWeight: "50",
                                             lineHeight: "1",
                                             margin: "0",
                                             letterSpacing: "0.05em",
                                             // animation: "moveUp 0.8s ease-out 2.5s forwards",
-                                        }, children: "WHITE".split("").map(function (letter, index) { return ((0, jsx_runtime_1.jsx)("span", { className: "letter-animate", style: {
+                                        }, children: "WHITE".split("").map(function (letter, index) { return ((0, jsx_runtime_1.jsx)("span", { className: "letter-animate masked-letter", style: {
                                                 display: "inline-block",
                                                 fontWeight: "100",
                                                 opacity: "0",
                                                 transform: "scaleX(0.1)",
-                                                animation: "letterReveal 0.8s ease-out ".concat(0.1 * index, "s forwards"),
+                                                animation: "letterRevealWithMask 0.8s ease-out ".concat(0.1 * index, "s forwards, animate-background 5s infinite alternate linear ").concat(0.8 + 0.1 * index, "s"),
                                             }, children: letter }, index)); }) }), (0, jsx_runtime_1.jsx)("div", { className: "expanding-rectangle", style: {
                                             width: "0px",
                                             height: "0px",
@@ -362,7 +362,6 @@ function App() {
                                             // animation: "expandRectangle 0.7s ease-out 2.0s forwards",
                                         } }), (0, jsx_runtime_1.jsxs)("div", { className: "eventive-text", style: {
                                             fontFamily: "Anvers, sans-serif",
-                                            color: "#EEE8D6",
                                             fontSize: "clamp(2.5rem, 5vw, 5rem)",
                                             fontWeight: "50",
                                             lineHeight: "1",
@@ -372,12 +371,12 @@ function App() {
                                             opacity: eventiveOpacity,
                                             transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
                                             // animation: "moveDown 0.8s ease-out 2.5s forwards",
-                                        }, children: ["EVENTIVE".split("").map(function (letter, index) { return ((0, jsx_runtime_1.jsx)("span", { className: "letter-animate", style: {
+                                        }, children: ["EVENTIVE".split("").map(function (letter, index) { return ((0, jsx_runtime_1.jsx)("span", { className: "letter-animate masked-letter", style: {
                                                     display: "inline-block",
                                                     fontWeight: "100",
                                                     opacity: "0",
                                                     transform: "scaleX(0.1)",
-                                                    animation: "letterReveal 0.8s ease-out ".concat(0.6 + 0.1 * index, "s forwards"),
+                                                    animation: "letterRevealWithMask 0.8s ease-out ".concat(0.6 + 0.1 * index, "s forwards, animate-background 5s infinite alternate linear ").concat(1.4 + 0.1 * index, "s"),
                                                 }, children: letter }, index)); }), (0, jsx_runtime_1.jsxs)("div", { style: {
                                                     position: "absolute",
                                                     inset: 0,
@@ -402,6 +401,6 @@ function App() {
                                                                 ? "0 0 20px rgba(82, 39, 255, 0.5), 0 0 40px rgba(82, 39, 255, 0.3)"
                                                                 : "none",
                                                             transition: "text-shadow 0.8s ease-out",
-                                                        } })] })] })] }) }) })] }), (0, jsx_runtime_1.jsx)(About_1.default, {}), (0, jsx_runtime_1.jsx)(Howwework_1.Howwework, {}), (0, jsx_runtime_1.jsx)(Projects_1.default, {}), (0, jsx_runtime_1.jsx)(Contact_1.default, {})] }));
+                                                        } })] })] })] }) }) })] }), (0, jsx_runtime_1.jsx)(About_1.default, {}), (0, jsx_runtime_1.jsx)(Howwework_1.Howwework, {}), (0, jsx_runtime_1.jsx)(FounderNote_1.default, {}), (0, jsx_runtime_1.jsx)(Projects_1.default, {}), (0, jsx_runtime_1.jsx)(Contact_1.default, {})] }));
 }
 exports.default = App;
