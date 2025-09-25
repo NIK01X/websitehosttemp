@@ -36,7 +36,9 @@ var FounderNote = function () {
                         // textStroke: "1px #FFFFFF",
                         lineHeight: "0.9",
                         padding: "0 1rem",
-                    }, children: (0, jsx_runtime_1.jsx)(ShinyText_1.default, { text: "FOUNDER'S NOTE", disabled: false, speed: 3 }) }) }), (0, jsx_runtime_1.jsxs)("div", { className: "relative z-10 text-center", children: [(0, jsx_runtime_1.jsx)("div", { className: "mb-8", children: (0, jsx_runtime_1.jsx)("img", { src: "/images/personimage.png", alt: "Founder - White Eventive", className: "w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg shadow-2xl mx-auto", style: {
+                    }, children: (0, jsx_runtime_1.jsx)(ShinyText_1.default, { text: "FOUNDER'S NOTE", disabled: false, speed: 3 }) }) }), (0, jsx_runtime_1.jsxs)("div", { className: "relative z-10 text-center", children: [(0, jsx_runtime_1.jsx)("div", { className: "mb-8", children: (0, jsx_runtime_1.jsx)("img", { src: "/websitehosttemp/images/personimage.png", 
+                            // src="/images/personimage.png"
+                            alt: "Founder - White Eventive", className: "w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg shadow-2xl mx-auto", style: {
                                 filter: "brightness(1.1) contrast(1.05)",
                                 // boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.1)",
                             } }) }), (0, jsx_runtime_1.jsxs)("div", { className: "max-w-4xl mx-auto space-y-6", children: [(0, jsx_runtime_1.jsx)("p", { className: "text-lg md:text-xl lg:text-2xl leading-relaxed", style: {

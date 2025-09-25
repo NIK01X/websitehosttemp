@@ -1,9 +1,173 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import ScrollReveal from "../Animations/ReactBits/ScrollReveal";
 import ShinyText from "../Animations/ReactBits/ShinyText";
+import { Spotlight } from "../Animations/Aceternity/spotlight-new";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 const FounderNote: React.FC = () => {
+  const founderNoteRef = useRef<HTMLHeadingElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const titleRef = useRef<HTMLParagraphElement>(null);
+  const companyRef = useRef<HTMLParagraphElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Set all elements to initial hidden state
+    const elements = [
+      founderNoteRef,
+      imageRef,
+      paragraphRef,
+      titleRef,
+      companyRef,
+    ];
+
+    elements.forEach((ref) => {
+      if (ref.current) {
+        gsap.set(ref.current, {
+          opacity: 0,
+          y: 100,
+          willChange: "transform, opacity",
+        });
+      }
+    });
+
+    // Special handling for image scale
+    if (imageRef.current) {
+      gsap.set(imageRef.current, {
+        opacity: 0,
+        y: 120,
+        scale: 0.8,
+        willChange: "transform, opacity",
+      });
+    }
+
+    // Single ScrollTrigger for the entire section
+    if (sectionRef.current) {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse",
+        onEnter: () => {
+          // Animate ALL elements simultaneously with more intensity
+          elements.forEach((ref) => {
+            if (ref.current) {
+              gsap.to(ref.current, {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: "power3.out",
+                onComplete: () => {
+                  gsap.set(ref.current, { willChange: "auto" });
+                },
+              });
+            }
+          });
+
+          // Special animation for image with scale and more dramatic movement
+          if (imageRef.current) {
+            gsap.to(imageRef.current, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1.5,
+              ease: "power3.out",
+              onComplete: () => {
+                gsap.set(imageRef.current, { willChange: "auto" });
+              },
+            });
+          }
+        },
+        onLeave: () => {
+          // Hide ALL elements simultaneously
+          elements.forEach((ref) => {
+            if (ref.current) {
+              gsap.to(ref.current, {
+                opacity: 0,
+                y: -30,
+                duration: 0.6,
+                ease: "power2.in",
+              });
+            }
+          });
+
+          if (imageRef.current) {
+            gsap.to(imageRef.current, {
+              opacity: 0,
+              y: -30,
+              scale: 0.95,
+              duration: 0.6,
+              ease: "power2.in",
+            });
+          }
+        },
+        onEnterBack: () => {
+          // Animate ALL elements simultaneously on scroll back with intensity
+          elements.forEach((ref) => {
+            if (ref.current) {
+              gsap.to(ref.current, {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: "power3.out",
+                onComplete: () => {
+                  gsap.set(ref.current, { willChange: "auto" });
+                },
+              });
+            }
+          });
+
+          if (imageRef.current) {
+            gsap.to(imageRef.current, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1.5,
+              ease: "power3.out",
+              onComplete: () => {
+                gsap.set(imageRef.current, { willChange: "auto" });
+              },
+            });
+          }
+        },
+        onLeaveBack: () => {
+          // Hide ALL elements simultaneously on scroll back with more dramatic exit
+          elements.forEach((ref) => {
+            if (ref.current) {
+              gsap.to(ref.current, {
+                opacity: 0,
+                y: 100,
+                duration: 0.8,
+                ease: "power2.in",
+              });
+            }
+          });
+
+          if (imageRef.current) {
+            gsap.to(imageRef.current, {
+              opacity: 0,
+              y: 120,
+              scale: 0.8,
+              duration: 0.8,
+              ease: "power2.in",
+            });
+          }
+        },
+      });
+    }
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="founder-note"
       style={{
         backgroundColor: "#000000",
@@ -29,8 +193,10 @@ const FounderNote: React.FC = () => {
           maxWidth: "1200px",
         }}
       >
+        <Spotlight />
         <h2
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold opacity-90"
+          ref={founderNoteRef}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold opacity-90"
           style={{
             fontFamily: "Inter, sans-serif",
             color: "transparent",
@@ -60,15 +226,20 @@ const FounderNote: React.FC = () => {
       {/* Centered Content */}
       <div className="relative z-10 text-center">
         {/* Founder Image - Centered */}
-        <div className="mb-8">
+        <div className="mb-8 relative">
           <img
+            ref={imageRef}
             src="/websitehosttemp/images/personimage.png"
             // src="/images/personimage.png"
             alt="Founder - White Eventive"
-            className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg shadow-2xl mx-auto"
+            className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg mx-auto"
             style={{
-              filter: "brightness(1.1) contrast(1.05)",
+              // filter: "brightness(1.1) contrast(1.05)",
               // boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.1)",
+              maskImage:
+                "linear-gradient(to bottom, black 60%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, black 60%, transparent 100%)",
             }}
           />
         </div>
@@ -76,6 +247,7 @@ const FounderNote: React.FC = () => {
         {/* Content Below Image */}
         <div className="max-w-4xl mx-auto space-y-6">
           <p
+            ref={paragraphRef}
             className="text-lg md:text-xl lg:text-2xl leading-relaxed"
             style={{
               fontFamily: "Aileron, sans-serif",
@@ -114,6 +286,7 @@ const FounderNote: React.FC = () => {
 
           <div className="pt-6">
             <p
+              ref={titleRef}
               className="text-xl md:text-2xl font-semibold"
               style={{
                 fontFamily: "Anvers, sans-serif",
@@ -129,6 +302,7 @@ const FounderNote: React.FC = () => {
               />
             </p>
             <p
+              ref={companyRef}
               className="text-lg md:text-xl"
               style={{
                 fontFamily: "Anvers, sans-serif",
