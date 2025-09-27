@@ -4,6 +4,7 @@ import ShinyText from "../Animations/ReactBits/ShinyText";
 import { Spotlight } from "../Animations/Aceternity/spotlight-new";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ModelViewer from "./ModelViewer";
 
 gsap.registerPlugin(ScrollTrigger);
 const FounderNote: React.FC = () => {
@@ -226,11 +227,12 @@ const FounderNote: React.FC = () => {
       {/* Centered Content */}
       <div className="relative z-10 text-center">
         {/* Founder Image - Centered */}
+
         <div className="mb-8 relative">
           <img
             ref={imageRef}
-            src="/websitehosttemp/images/personimage.png"
-            // src="/images/personimage.png"
+            // src="/websitehosttemp/images/personimage.png"
+            src="/images/personimage.png"
             alt="Founder - White Eventive"
             className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg mx-auto"
             style={{

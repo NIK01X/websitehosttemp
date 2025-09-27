@@ -7,6 +7,7 @@ var jsx_runtime_1 = require("react/jsx-runtime");
 var StaggeredMenu_1 = __importDefault(require("./Animations/ReactBits/StaggeredMenu"));
 var About_1 = __importDefault(require("./components/About"));
 var Projects_1 = __importDefault(require("./components/Projects"));
+var Service_1 = require("./components/Service");
 var Howwework_1 = require("./components/Howwework");
 var Contact_1 = __importDefault(require("./components/Contact"));
 var react_1 = require("react");
@@ -401,6 +402,6 @@ function App() {
                                                                 ? "0 0 20px rgba(82, 39, 255, 0.5), 0 0 40px rgba(82, 39, 255, 0.3)"
                                                                 : "none",
                                                             transition: "text-shadow 0.8s ease-out",
-                                                        } })] })] })] }) }) })] }), (0, jsx_runtime_1.jsx)(About_1.default, {}), (0, jsx_runtime_1.jsx)(Howwework_1.Howwework, {}), (0, jsx_runtime_1.jsx)(FounderNote_1.default, {}), (0, jsx_runtime_1.jsx)(Projects_1.default, {}), (0, jsx_runtime_1.jsx)(Contact_1.default, {})] }));
+                                                        } })] })] })] }) }) })] }), (0, jsx_runtime_1.jsx)(About_1.default, {}), (0, jsx_runtime_1.jsx)(Howwework_1.Howwework, {}), (0, jsx_runtime_1.jsx)(FounderNote_1.default, {}), (0, jsx_runtime_1.jsx)(Service_1.Service, {}), (0, jsx_runtime_1.jsx)(Projects_1.default, {}), (0, jsx_runtime_1.jsx)(Contact_1.default, {})] }));
 }
 exports.default = App;

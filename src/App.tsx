@@ -812,7 +812,7 @@ function App() {
       <Howwework />
       {/* <Service /> */}
       <FounderNote />
-      {/* <Service /> */}
+      <Service />
       <Projects />
       <Contact />
     </div>
