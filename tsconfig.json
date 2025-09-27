@@ -5,8 +5,9 @@
       "@/*": ["./src/*"]
     },
     "jsx": "react-jsx", // Or "react", "react-jsxdev",
-    "lib": ["ES2020", "DOM"],
-    "esModuleInterop": true
+    "lib": ["ES2020", "DOM", "WebWorker"],
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]

@@ -11,7 +11,7 @@ var react_1 = require("react");
 var react_2 = require("motion/react");
 var utils_1 = require("../../lib/utils");
 var CometCard = function (_a) {
-    var _b = _a.rotateDepth, rotateDepth = _b === void 0 ? 17.5 : _b, _c = _a.translateDepth, translateDepth = _c === void 0 ? 20 : _c, className = _a.className, children = _a.children;
+    var _b = _a.rotateDepth, rotateDepth = _b === void 0 ? 17.5 : _b, _c = _a.translateDepth, translateDepth = _c === void 0 ? 20 : _c, className = _a.className, children = _a.children, _d = _a.floatDelay, floatDelay = _d === void 0 ? 0 : _d;
     var ref = (0, react_1.useRef)(null);
     var x = (0, react_2.useMotionValue)(0);
     var y = (0, react_2.useMotionValue)(0);
@@ -43,16 +43,30 @@ var CometCard = function (_a) {
     };
     return ((0, jsx_runtime_1.jsx)("div", { className: (0, utils_1.cn)(className), style: {
             perspective: "1000px",
-            transformStyle: "preserve-3d"
+            transformStyle: "preserve-3d",
         }, children: (0, jsx_runtime_1.jsxs)(react_2.motion.div, { ref: ref, onMouseMove: handleMouseMove, onMouseLeave: handleMouseLeave, style: {
                 rotateX: rotateX,
                 rotateY: rotateY,
                 translateX: translateX,
                 translateY: translateY,
-                boxShadow: "rgba(0, 0, 0, 0.01) 0px 520px 146px 0px, rgba(0, 0, 0, 0.04) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.29) 0px 21px 46px 0px",
-            }, initial: { scale: 1, z: 0 }, whileHover: {
+            }, initial: { scale: 1, z: 0, y: 0 }, animate: {
+                y: [0, -8, 0],
+                boxShadow: [
+                    "rgba(0, 0, 0, 0.1) 0px 10px 30px 0px, rgba(0, 0, 0, 0.2) 0px 4px 8px 0px",
+                    "rgba(0, 0, 0, 0.15) 0px 15px 40px 0px, rgba(0, 0, 0, 0.25) 0px 6px 12px 0px",
+                    "rgba(0, 0, 0, 0.1) 0px 10px 30px 0px, rgba(0, 0, 0, 0.2) 0px 4px 8px 0px",
+                ],
+                transition: {
+                    duration: 3,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    delay: floatDelay,
+                },
+            }, whileHover: {
                 scale: 1.05,
                 z: 50,
+                y: -12,
                 transition: { duration: 0.2 },
             }, className: "relative rounded-2xl", children: [children, (0, jsx_runtime_1.jsx)(react_2.motion.div, { className: "pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay", style: {
                         background: glareBackground,
