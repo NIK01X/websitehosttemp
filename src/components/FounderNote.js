@@ -189,9 +189,9 @@ var FounderNote = function () {
                             // textStroke: "1px #FFFFFF",
                             lineHeight: "0.9",
                             padding: "0 1rem",
-                        }, children: (0, jsx_runtime_1.jsx)(ShinyText_1.default, { text: "FOUNDER'S NOTE", disabled: false, speed: 3 }) })] }), (0, jsx_runtime_1.jsxs)("div", { className: "relative z-10 text-center", children: [(0, jsx_runtime_1.jsx)("div", { className: "mb-8 relative", children: (0, jsx_runtime_1.jsx)("img", { ref: imageRef, src: "/websitehosttemp/images/personimage.png", 
-                            // src="/images/personimage.png"
-                            alt: "Founder - White Eventive", className: "w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg mx-auto", style: {
+                        }, children: (0, jsx_runtime_1.jsx)(ShinyText_1.default, { text: "FOUNDER'S NOTE", disabled: false, speed: 3 }) })] }), (0, jsx_runtime_1.jsxs)("div", { className: "relative z-10 text-center", children: [(0, jsx_runtime_1.jsx)("div", { className: "mb-8 relative", children: (0, jsx_runtime_1.jsx)("img", { ref: imageRef, 
+                            // src="/websitehosttemp/images/personimage.png"
+                            src: "/images/personimage.png", alt: "Founder - White Eventive", className: "w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover rounded-lg mx-auto", style: {
                                 // filter: "brightness(1.1) contrast(1.05)",
                                 // boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.1)",
                                 maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
