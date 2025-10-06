@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
-var ShinyText_1 = __importDefault(require("../Animations/ReactBits/ShinyText"));
-var spotlight_new_1 = require("../Animations/Aceternity/spotlight-new");
+var ShinyText_1 = __importDefault(require("../shared/animations/ui/ShinyText"));
+var spotlight_new_1 = require("../shared/animations/effects/spotlight-new");
 var gsap_1 = require("gsap");
 var ScrollTrigger_1 = require("gsap/ScrollTrigger");
 gsap_1.gsap.registerPlugin(ScrollTrigger_1.ScrollTrigger);

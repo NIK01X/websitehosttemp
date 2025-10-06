@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Howwework = Howwework;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
-var timeline_1 = require("../Animations/Aceternity/timeline");
+var timeline_1 = require("../shared/animations/effects/timeline");
 var gsap_1 = require("gsap");
 var ScrollTrigger_1 = require("gsap/ScrollTrigger");
 // Register the ScrollTrigger plugin

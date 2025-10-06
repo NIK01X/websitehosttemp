@@ -4,15 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
-var StaggeredMenu_1 = __importDefault(require("./Animations/ReactBits/StaggeredMenu"));
+var StaggeredMenu_1 = __importDefault(require("./shared/animations/ui/StaggeredMenu"));
 var About_1 = __importDefault(require("./components/About"));
 var Projects_1 = __importDefault(require("./components/Projects"));
 var Service_1 = require("./components/Service");
 var Howwework_1 = require("./components/Howwework");
 var Contact_1 = __importDefault(require("./components/Contact"));
 var react_1 = require("react");
-var background_gradient_animation_1 = require("./Animations/Aceternity/background-gradient-animation");
-var Noise_1 = __importDefault(require("./Animations/ReactBits/Noise"));
+var background_gradient_animation_1 = require("./shared/animations/effects/background-gradient-animation");
+var Noise_1 = __importDefault(require("./shared/animations/ui/Noise"));
 var FounderNote_1 = __importDefault(require("./components/FounderNote"));
 // height of hero
 var heroHeight = window.innerHeight;

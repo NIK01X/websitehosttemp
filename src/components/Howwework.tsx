@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { Timeline } from "../Animations/Aceternity/timeline";
-import { AuroraBackground } from "../Animations/Aceternity/aurora-background";
+import { Timeline } from "../shared/animations/effects/timeline";
+import { AuroraBackground } from "../shared/animations/effects/aurora-background";
 import { motion } from "motion/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Aurora from "../Animations/ReactBits/Aurora";
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);

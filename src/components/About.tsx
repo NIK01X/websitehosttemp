@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
-import { BackgroundBeams } from "../Animations/Aceternity/background-beams";
-import ScrollVelocity from "../Animations/ReactBits/ScrollVelocity";
-import AnimatedContent from "../Animations/ReactBits/AnimatedContent";
-import Shuffle from "../Animations/ReactBits/Shuffle";
-import GradientText from "../Animations/ReactBits/GradientText";
-import { Timeline } from "../Animations/Aceternity/timeline";
+import { BackgroundBeams } from "../shared/animations/effects/background-beams";
+import ScrollVelocity from "../shared/animations/ui/ScrollVelocity";
+import AnimatedContent from "../shared/animations/ui/AnimatedContent";
+import GradientText from "../shared/animations/ui/GradientText";
+import { Timeline } from "../shared/animations/effects/timeline";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import GlowingStars from "./GlowingStars";

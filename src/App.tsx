@@ -8,33 +8,30 @@
  * 4. Responsive design with smooth scrolling between sections
  */
 
-import { MaskContainer } from "./Animations/Aceternity/svgmask";
-import StaggeredMenu from "./Animations/ReactBits/StaggeredMenu";
+import { MaskContainer } from "./shared/animations/effects/svgmask";
+import StaggeredMenu from "./shared/animations/ui/StaggeredMenu";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import { Service } from "./components/Service";
 import { Howwework } from "./components/Howwework";
 import Contact from "./components/Contact";
-import GridMotion from "./Animations/ReactBits/GridMotion";
-import DomeGallery from "./Animations/ReactBits/DomeGallery";
-import AnimatedContent from "./Animations/ReactBits/AnimatedContent";
-import ScrollReveal from "./Animations/ReactBits/ScrollReveal";
-import LogoLoop from "./Animations/ReactBits/LogoLoop";
+import GridMotion from "./shared/animations/ui/GridMotion";
+
 import { useEffect, useState } from "react";
-import Stacking3D from "./Animations/Stacking3d";
-import HeroStack from "./Animations/Stacking3d";
-import { SparklesCore } from "./Animations/Aceternity/sparkles";
-import { BackgroundGradientAnimation } from "./Animations/Aceternity/background-gradient-animation";
+import Stacking3D from "./shared/animations/effects/Stacking3d";
+import HeroStack from "./shared/animations/effects/Stacking3d";
+import { SparklesCore } from "./shared/animations/effects/sparkles";
+import { BackgroundGradientAnimation } from "./shared/animations/effects/background-gradient-animation";
 import ScrollStack, {
   ScrollStackItem,
-} from "./Animations/ReactBits/ScrollStack";
-import { ParallaxScroll } from "./Animations/Aceternity/parallax-scroll";
-import { TextHoverEffect } from "./Animations/Aceternity/text-hover-effect";
-import ScrollVelocity from "./Animations/ReactBits/ScrollVelocity";
-import Masonry from "./Animations/ReactBits/Masonry";
-import { BackgroundBeams } from "./Animations/Aceternity/background-beams";
-import { LayoutGrid } from "./Animations/Aceternity/layout-grid";
-import Noise from "./Animations/ReactBits/Noise";
+} from "./shared/animations/ui/ScrollStack";
+import { ParallaxScroll } from "./shared/animations/effects/parallax-scroll";
+import { TextHoverEffect } from "./shared/animations/effects/text-hover-effect";
+import ScrollVelocity from "./shared/animations/ui/ScrollVelocity";
+
+import { BackgroundBeams } from "./shared/animations/effects/background-beams";
+import { LayoutGrid } from "./shared/animations/effects/layout-grid";
+import Noise from "./shared/animations/ui/Noise";
 import FounderNote from "./components/FounderNote";
 
 // height of hero

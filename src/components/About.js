@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
-var background_beams_1 = require("../Animations/Aceternity/background-beams");
-var GradientText_1 = __importDefault(require("../Animations/ReactBits/GradientText"));
+var background_beams_1 = require("../shared/animations/effects/background-beams");
+var GradientText_1 = __importDefault(require("../shared/animations/ui/GradientText"));
 var gsap_1 = require("gsap");
 var ScrollTrigger_1 = require("gsap/ScrollTrigger");
 var GlowingStars_1 = __importDefault(require("./GlowingStars"));

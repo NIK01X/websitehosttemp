@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import ScrollReveal from "../Animations/ReactBits/ScrollReveal";
-import ShinyText from "../Animations/ReactBits/ShinyText";
-import { Spotlight } from "../Animations/Aceternity/spotlight-new";
+import ShinyText from "../shared/animations/ui/ShinyText";
+import { Spotlight } from "../shared/animations/effects/spotlight-new";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ModelViewer from "./ModelViewer";
@@ -9,7 +8,7 @@ import {
   TextRevealCard,
   TextRevealCardTitle,
   TextRevealCardDescription,
-} from "../Animations/Aceternity/text-reveal-card";
+} from "../shared/animations/effects/text-reveal-card";
 
 gsap.registerPlugin(ScrollTrigger);
 const FounderNote: React.FC = () => {
