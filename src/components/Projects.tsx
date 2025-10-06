@@ -274,12 +274,12 @@ const projectsData: Project[] = [
     description:
       "A grand cultural celebration showcasing India's rich heritage through immersive experiences, traditional performances, and contemporary art installations.",
     images: [
-      // "/websitehosttemp/images/akhand/akhandone.jpg",
-      "/images/akhand/akhandone.jpg",
-      // "/websitehosttemp/images/akhand/akhand2.jpg",
-      "/images/akhand/akhand2.jpg",
-      // "/websitehosttemp/images/akhand/akhand3.jpg",
-      "/images/akhand/akhand3.jpg",
+      "/websitehosttemp/images/akhand/akhandone.jpg",
+      // "/images/akhand/akhandone.jpg",
+      "/websitehosttemp/images/akhand/akhand2.jpg",
+      // "/images/akhand/akhand2.jpg",
+      "/websitehosttemp/images/akhand/akhand3.jpg",
+      // "/images/akhand/akhand3.jpg",
     ],
     client: "Cultural Foundation",
     year: "2024",

@@ -171,6 +171,7 @@ function Service() {
                                             background: "radial-gradient(ellipse 120% 100% at 50% 50%, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%)",
                                             filter: "blur(0px) contrast(1.08) brightness(1.05)",
                                             boxShadow: "inset 0 0 80px rgba(255, 255, 255, 0), 0 30px 60px rgba(0,0,0,0.5)",
+                                            clipPath: "ellipse(95% 90% at 50% 50%)",
                                         }, children: [(0, jsx_runtime_1.jsx)("div", { className: "hidden lg:grid lg:grid-cols-3 gap-8 lg:gap-12 mb-8", children: serviceData.slice(0, 3).map(function (service, index) { return ((0, jsx_runtime_1.jsx)("div", { className: "flex justify-center", children: (0, jsx_runtime_1.jsx)(comet_card_1.CometCard, { floatDelay: index * 0.2, children: (0, jsx_runtime_1.jsxs)("div", { className: "service-card w-80 cursor-pointer flex flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 transition-all duration-300 hover:bg-[#2A2A2A] md:p-4", style: {
                                                                 transformStyle: "preserve-3d",
                                                                 transform: "perspective(600px) scale3d(1.05, 1.08, 1) rotateX(0deg)",
